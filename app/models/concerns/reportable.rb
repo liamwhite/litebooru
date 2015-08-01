@@ -4,7 +4,7 @@ module Reportable
   included do
     has_many :reports, validate: false, inverse_of: :reportable
     before_destroy do |reportable|
-      reportable.reports.seach do |report|
+      reportable.reports.each do |report|
        report.set(reportable: nil)
       end
     end
