@@ -1,0 +1,31 @@
+@import "reset";
+
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10pt;
+  > * {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10pt;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+  margin-bottom: 5pt;
+}
+
+a {
+  text-decoration: none;
+}
+
+#header {
+  background-color: #e6e6e6;
+  #home {
+    display: inline-block;
+    margin: 10px;
+    font-size: 15pt;
+    color: black;
+  }
+}
