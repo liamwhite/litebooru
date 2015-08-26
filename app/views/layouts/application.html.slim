@@ -11,3 +11,6 @@ html
       #content
         = yield
     #footer
+      | Served by
+      =<> Socket.gethostname
+      =<> render_time

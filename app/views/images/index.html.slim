@@ -1,2 +1,4 @@
 h1 Images#index
-
+- for i in @images
+  a href=image_path(i)
+    =<> image_tag i.image.url(:thumb)
