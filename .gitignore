@@ -12,3 +12,6 @@
 /tmp
 *.swp
 *.swo
+
+# Ignore precompiled assets
+public/assets
