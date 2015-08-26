@@ -1,0 +1,16 @@
+h1 Make a new image
+= form_for @image do |f|
+  .field
+    => f.label :image, 'Upload Image'
+    => f.file_field :image
+  .field
+    => f.label :source_url, 'Source URL'
+    => f.text_field :source_url
+  .field
+    => f.label :tag_list, 'Tags'
+    => f.text_area :tag_list
+  .field
+    => f.label :description, 'Description'
+    => f.text_area :description
+  .actions
+    = f.submit data:{disable_with: 'Please wait...'}

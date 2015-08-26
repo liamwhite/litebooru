@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  resources :images
+
   root to: 'pages#activity'
   devise_for :users
 

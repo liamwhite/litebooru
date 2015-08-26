@@ -15,3 +15,6 @@
 
 # Ignore precompiled assets
 public/assets
+
+# Ignore system assets
+public/system
