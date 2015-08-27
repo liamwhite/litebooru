@@ -1,6 +1,7 @@
 class Tag
   include Mongoid::Document
   include Indexable
+  include Sluggable
 
   # Fields
   field :description, type: String, default: ""
@@ -10,6 +11,7 @@ class Tag
   field :name_in_namespace, type: String
   field :short_description, type: String, default: ""
   field :system, type: Boolean
+  set_slugged_field :name
 
   # Relations
   belongs_to :aliased_tag, class_name: 'Tag', validate: false, inverse_of: :aliases
@@ -54,6 +56,10 @@ class Tag
 
   def set_image_count
     self.image_count = Image.in(tag_ids: [self.id]).where(hidden_from_users: false).count
+  end
+
+  def to_param
+    slug
   end
 
   def self.tags_per_page

@@ -4,5 +4,12 @@ class TagsController < ApplicationController
   end
 
   def show
+    @tag = Tag.find_by(slug: params[:id])
+    if @tag
+      @images = Image.search(query: {match_all: {}}, filter: {term: {tag_ids: @tag.id.to_s}}, sort: {created_at: :desc}).records
+      render 'images/index'
+    else
+      render 'pages/render_404'
+    end
   end
 end
