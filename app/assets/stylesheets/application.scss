@@ -52,8 +52,8 @@ button, input, select, textarea {
   border: 1px solid #cdcdcd;
   font-family: monospace;
   font-size: 10pt;
-  margin-bottom: 5px;
   padding: 3px;
+  border-radius: 3px;
 }
 
 button[type="submit"], input[type="submit"] {
@@ -76,4 +76,9 @@ textarea {
   background: #cde69a;
   border: 1px solid #9ecf3c;
   padding: 5px;
+  border-radius: 3px;
+}
+
+#image-tags .tag {
+  margin: 2px;
 }
