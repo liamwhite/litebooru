@@ -63,12 +63,14 @@ class Image
     (new_tags - old_tags).each do |t|
       t.inc(image_count: 1)
       t.save!
+      t.update_index
     end
 
     # Tags that were removed
     (old_tags - new_tags).each do |t|
       t.inc(image_count: -1)
       t.save!
+      t.update_index
     end
 
     self.tags = new_tags
