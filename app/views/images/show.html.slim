@@ -2,3 +2,6 @@
   = image_tag @image.image.url(:large)
 #image-tags
   = render partial: 'tags/tag_list', locals: {tags: @image.tags}
+- if not @image.source.blank?
+  #image-source
+    = link_to truncate(@image.source_url, length: 500), @image.source_url

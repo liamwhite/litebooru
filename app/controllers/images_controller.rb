@@ -5,6 +5,11 @@ class ImagesController < ApplicationController
 
   def show
     @image = Image.find_by(id_number: params[:id])
+    if @image
+      render
+    else
+      render 'pages/404'
+    end
   end
 
   def new
@@ -18,6 +23,8 @@ class ImagesController < ApplicationController
     if @image.assign_attributes(params.require(:image).permit(Image::ALLOWED_PARAMETERS))
       @image.save!
       redirect_to image_path(@image)
+    else
+      render action: 'new'
     end
   end
 end

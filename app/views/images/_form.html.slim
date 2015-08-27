@@ -1,4 +1,10 @@
 = form_for @image do |f|
+  - if @image.errors.any?
+    #error_explanation
+      h2= "#{pluralize(@image.errors.count, 'error')} prevented this from being uploaded:"
+      ul
+        - @image.errors.full_messages.each do |msg|
+          li= msg
   .field
     => f.label :image, 'Upload Image'
     => f.file_field :image

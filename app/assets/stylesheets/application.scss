@@ -30,7 +30,7 @@ a {
   border-bottom: 1px solid #ddd;
   span {
     display: inline-block;
-    margin: 10px;
+    margin: 10px 10px 10px 0;
     font-size: 15pt;
     a {
       color: black;
@@ -38,7 +38,7 @@ a {
   }
 }
 
-#footer, #image-container, #image-tags {
+#footer, #image-container, #image-tags, #image-source {
   text-align: center;
 }
 
