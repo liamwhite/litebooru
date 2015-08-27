@@ -1,4 +1,6 @@
 @import "reset";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -6,8 +8,11 @@ body {
   > * {
     padding-left: 10px;
     padding-right: 10px;
-    margin-bottom: 10pt;
   }
+}
+
+div {
+  margin-bottom: 10pt;
 }
 
 h1, h2, h3, h4, h5 {
@@ -22,10 +27,53 @@ a {
 
 #header {
   background-color: #e6e6e6;
-  #home {
+  border-bottom: 1px solid #ddd;
+  span {
     display: inline-block;
     margin: 10px;
     font-size: 15pt;
-    color: black;
+    a {
+      color: black;
+    }
   }
+}
+
+#footer, #image-container, #image-tags {
+  text-align: center;
+}
+
+#image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, select, textarea {
+  background: #eee;
+  border: 1px solid #cdcdcd;
+  font-family: monospace;
+  font-size: 10pt;
+  margin-bottom: 5px;
+  padding: 3px;
+}
+
+button[type="submit"], input[type="submit"] {
+  padding: 5px;
+  margin: 5px 5px 5px 0;
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+textarea, input[type="text"] {
+  max-width: 600px;
+  width: 100%;
+}
+
+textarea {
+  height: 60px;
+}
+
+.tag {
+  display: inline-block;
+  background: #cde69a;
+  border: 1px solid #9ecf3c;
+  padding: 5px;
 }

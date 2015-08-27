@@ -1,1 +1,4 @@
-= image_tag @image.image.url
+#image-container
+  = image_tag @image.image.url(:large)
+#image-tags
+  = render partial: 'tags/tag_list', locals: {tags: @image.tags}

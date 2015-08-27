@@ -8,11 +8,15 @@ html
     = csrf_meta_tags
   body
     #header
-      a#home href="/" Litebooru
+      span
+        a#home href="/" Litebooru
+        a#upload< href=new_image_path
+          i.fa.fa-upload
     #container
       #content
         = yield
     #footer
-      | Served by
-      =<> Socket.gethostname
-      =<> render_time
+      small
+        | Served by
+        =<> Socket.gethostname
+        =<> render_time
