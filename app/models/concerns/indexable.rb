@@ -1,5 +1,31 @@
 require 'elasticsearch/model'
 
+# Patch in Kaminari
+Kaminari::Hooks.init
+Elasticsearch::Model::Response::Response.__send__(
+  :include, Elasticsearch::Model::Response::Pagination::Kaminari
+)
+Elasticsearch::Model::Response::Records.__send__(
+  :include, Elasticsearch::Model::Response::Pagination::Kaminari
+)
+
+# Ordering hack, requires Kaminari support to be patched in
+module Elasticsearch
+  module Model
+    module Adapter
+      module Mongoid
+        module Records
+          def records
+            klass.where(:id.in => ids).instance_exec(response.response['hits']['hits']) do |hits|
+              self.entries.sort_by { |e| hits.index { |hit| hit['_id'].to_s == e.id.to_s } }
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
 module Indexable
   extend ActiveSupport::Concern
 

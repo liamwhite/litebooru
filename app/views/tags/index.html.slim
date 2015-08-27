@@ -1,2 +1,4 @@
 h2 Tags
+- if @tags.count > Tag.tags_per_page
+  .pagination= paginate @tags
 = render partial: 'tag_list', locals: {tags: @tags}

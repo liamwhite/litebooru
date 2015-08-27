@@ -52,6 +52,14 @@ class Tag
     end
   end
 
+  def set_image_count
+    self.image_count = Image.in(tag_ids: [self.id]).where(hidden_from_users: false).count
+  end
+
+  def self.tags_per_page
+    250
+  end
+
   def self.tag_string_to_tags(tag_string)
     Tag.parse_tag_list(tag_string).map{ |t| Tag.get_tag_by_name(t) }
   end
