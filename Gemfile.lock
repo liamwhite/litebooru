@@ -65,12 +65,28 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    elasticsearch (1.0.12)
+      elasticsearch-api (= 1.0.12)
+      elasticsearch-transport (= 1.0.12)
+    elasticsearch-api (1.0.12)
+      multi_json
+    elasticsearch-model (0.1.7)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.7)
+    elasticsearch-transport (1.0.12)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.5.2)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     font-awesome-sass (4.3.2.1)
       sass (~> 3.2)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    hashie (3.4.2)
     i18n (0.7.0)
     jquery-rails (4.0.4)
       rails-dom-testing (~> 1.0)
@@ -95,6 +111,8 @@ GEM
       bson (~> 3.0)
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
+    multi_json (1.11.2)
+    multipart-post (2.0.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     optionable (0.2.0)
@@ -177,6 +195,8 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  elasticsearch-model
+  elasticsearch-rails
   font-awesome-sass
   jquery-rails
   mongoid

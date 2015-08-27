@@ -12,6 +12,8 @@ gem 'font-awesome-sass'
 gem 'turbolinks'
 gem 'paperclip', '< 4.3'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
 
 group :development, :test do
   gem 'byebug'

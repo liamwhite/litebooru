@@ -1,5 +1,6 @@
 class Tag
   include Mongoid::Document
+  include Indexable
 
   # Fields
   field :description, type: String, default: ""
@@ -27,6 +28,29 @@ class Tag
   # Validations
   validates_presence_of :name
   validates :name, length: {maximum: 75}
+
+  # Elasticsearch
+  def as_json(options = {})
+    d = {
+      id: self.id.to_s,
+      name: self.name,
+      description: self.description,
+      short_description: self.short_description,
+      image_count: self.image_count,
+      system: self.system,
+    }
+  end
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false', _source: {enabled: false}, _all: {enabled: false} do
+      indexes :id, type: 'string', index: 'not_analyzed'
+      indexes :name, type: 'string', index: 'not_analyzed'
+      indexes :image_count, type: 'integer', index: 'not_analyzed'
+      indexes :description, type: 'string', analyzer: 'snowball'
+      indexes :short_description, type: 'string', analyzer: 'snowball'
+      indexes :system, type: 'boolean', index: 'not_analyzed'
+    end
+  end
 
   def self.tag_string_to_tags(tag_string)
     Tag.parse_tag_list(tag_string).map{ |t| Tag.get_tag_by_name(t) }

@@ -2,6 +2,7 @@ class Image
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Timestamps
+  include Indexable
   include Reportable
 
   # Fields
@@ -53,5 +54,42 @@ class Image
 
   def tag_list
     @tag_list ||= self.tags.map(&:name).join(',')
+  end
+
+  # Elasticsearch
+  def as_json(options = {})
+    d = {
+      id: self.id.to_s,
+      id_number: self.id_number,
+      created_at: self.created_at,
+      updated_at: self.updated_at,
+      description: self.description,
+      ip: self.ip,
+      hidden_from_users: self.hidden_from_users,
+      source_url: self.source_url,
+      tag_ids: self.tags.map{|t| t.id.to_s},
+      tag_names: self.tags.map(&:name),
+      uploader: self.user.try(:name).to_s,
+      uploader_id: self.user_id.to_s,
+    }
+  end
+
+  alias as_indexed_json as_json
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false', _all: {enabled: false} do
+      indexes :id, type: 'string', index: 'not_analyzed'
+      indexes :id_number, type: 'integer', index: 'not_analyzed'
+      indexes :hidden_from_users, type: 'boolean', index: 'not_analyzed'
+      indexes :created_at, type: 'date'
+      indexes :updated_at, type: 'date'
+      indexes :description, type: 'string', analyzer: 'snowball'
+      indexes :ip, type: 'string', index: 'not_analyzed'
+      indexes :source_url, type: 'string', index: 'not_analyzed'
+      indexes :tag_ids, type: 'string', index: 'not_analyzed'
+      indexes :tag_names, type: 'string', index: 'not_analyzed'
+      indexes :uploader, type: 'string', index: 'not_analyzed'
+      indexes :uploader_id, type: 'string', index: 'not_analyzed'
+    end
   end
 end
