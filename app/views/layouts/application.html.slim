@@ -8,10 +8,21 @@ html
     = csrf_meta_tags
   body
     #header
-      span
-        a#home href="/" Litebooru
-        a#upload< href=new_image_path
-          i.fa.fa-fw.fa-upload
+      #left
+        span
+          a#home href="/" Litebooru
+          a#upload< href=new_image_path
+            i.fa.fa-fw.fa-upload
+      #right
+        span
+         - if user_signed_in?
+           a#logout href=destroy_user_session_path data-method="delete" rel="nofollow"
+             i.fa.fa-sign-out>
+             | Logout
+         - else
+           a#login href=new_user_session_path
+             i.fa.fa-sign-in>
+             | Login
     #container
       #content
         = yield

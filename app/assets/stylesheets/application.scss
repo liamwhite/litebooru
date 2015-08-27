@@ -28,13 +28,22 @@ a {
 #header {
   background-color: #e6e6e6;
   border-bottom: 1px solid #ddd;
-  span {
-    display: inline-block;
-    margin: 10px 10px 10px 0;
-    font-size: 15pt;
-    a {
-      color: black;
+  padding: 0;
+  display: table;
+  width: 100%;
+  div {
+    display: table-cell;
+    span {
+      display: inline-block;
+      margin: 10px;
+      font-size: 12pt;
+      a {
+        color: black;
+      }
     }
+  }
+  #right {
+    text-align: right;
   }
 }
 
