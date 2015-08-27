@@ -10,18 +10,10 @@ Elasticsearch::Model::Response::Records.__send__(
 )
 
 # Ordering hack, requires Kaminari support to be patched in
-module Elasticsearch
-  module Model
-    module Adapter
-      module Mongoid
-        module Records
-          def records
-            klass.where(:id.in => ids).instance_exec(response.response['hits']['hits']) do |hits|
-              self.entries.sort_by { |e| hits.index { |hit| hit['_id'].to_s == e.id.to_s } }
-            end
-          end
-        end
-      end
+Elasticsearch::Model::Adapter::Mongoid::Records.class_eval do
+  def records
+    klass.where(:id.in => ids).instance_exec(response.response['hits']['hits']) do |hits|
+      self.entries.sort_by { |e| hits.index { |hit| hit['_id'].to_s == e.id.to_s } }
     end
   end
 end
