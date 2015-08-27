@@ -1,3 +1,4 @@
 - for i in images
-  a href=image_path(i)
-    =<> image_tag i.image.url(:thumb)
+  .thumb.thumb-normal
+    a href=image_path(i)
+      .block=<> image_tag i.image.url(:thumb)

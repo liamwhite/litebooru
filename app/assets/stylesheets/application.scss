@@ -83,3 +83,31 @@ textarea {
     color: darken(#9ecf3c, 20%);
   }
 }
+
+.thumb {
+  padding: 0;
+  margin-right: 4px;
+  display: inline-block;
+  border: 1px solid #b7c7cf;
+  vertical-align: middle;
+  border-radius: 3px;
+  .block {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .block:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+  }
+  .block:before, img {
+    vertical-align: middle;
+  }
+}
+
+.thumb-normal {
+  width: 250px;
+  height: 250px;
+}
