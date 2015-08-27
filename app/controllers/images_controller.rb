@@ -8,7 +8,7 @@ class ImagesController < ApplicationController
     if @image
       render
     else
-      render 'pages/404'
+      render 'pages/render_404'
     end
   end
 

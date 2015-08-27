@@ -5,10 +5,10 @@ module Sluggable
   included do
     field :slug, type: String
     index slug: 1
-    validates :slug, presence: true, uniqueness: true
+    validates :slug, uniqueness: true, presence: true
 
-    before_create do
-      set_slug
+    before_validation do
+      set_slug if not self.persisted?
     end
   end
 

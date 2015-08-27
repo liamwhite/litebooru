@@ -1,7 +1,14 @@
 #image-container
   = image_tag @image.image.url(:large)
 #image-tags
-  = render partial: 'tags/tag_list', locals: {tags: @image.tags}
+  - tags = @image.tags.desc(:system).asc(:name)[0..9]
+  = render partial: 'tags/tag_list', locals: {tags: tags}
+  - if @image.tags.count > 10
+    a href="#"
+      small
+        | (+
+        => @image.tags.count - 10
+        | more&hellip;)
 - if not @image.source_url.blank?
   #image-source
     = link_to truncate(@image.source_url, length: 500), @image.source_url

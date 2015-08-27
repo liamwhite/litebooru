@@ -48,12 +48,31 @@ class Image
   end
 
   def tag_list=(tag_list)
-    self.tags = Tag.tag_string_to_tags(tag_list)
-    @tag_list = self.tags.map(&:name).join(',')
+    set_tag_list(tag_list)
   end
 
   def tag_list
     @tag_list ||= self.tags.map(&:name).join(',')
+  end
+
+  def set_tag_list(new_tag_list)
+    old_tags = self.tags
+    new_tags = Tag.tag_string_to_tags(new_tag_list)
+
+    # Any tags we didn't previously have
+    (new_tags - old_tags).each do |t|
+      t.inc(image_count: 1)
+      t.save!
+    end
+
+    # Tags that were removed
+    (old_tags - new_tags).each do |t|
+      t.inc(image_count: -1)
+      t.save!
+    end
+
+    self.tags = new_tags
+    @tag_list = self.tags.map(&:name).join(',')
   end
 
   # Elasticsearch
