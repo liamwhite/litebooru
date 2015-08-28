@@ -5,4 +5,12 @@ class ApplicationController < ActionController::Base
   before_filter do
     @start_time = Time.now
   end
+
+  def render_404_if_not(cond, &block)
+    if cond
+      yield
+    else
+      render 'pages/render_404'
+    end
+  end
 end

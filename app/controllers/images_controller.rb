@@ -5,19 +5,15 @@ class ImagesController < ApplicationController
 
   def show
     @image = Image.find_by(id_number: params[:id])
-    if @image
+    render_404_if_not(@image) do
       render
-    else
-      render 'pages/render_404'
     end
   end
 
   def tags
     @image = Image.find_by(id_number: params[:image_id])
-    if @image
+    render_404_if_not(@image) do
       render partial: 'tags/tag_list', layout: false, locals: {tags: @image.tags.desc(:system).asc(:name)}
-    else
-      render 'pages/render_404'
     end
   end
 
