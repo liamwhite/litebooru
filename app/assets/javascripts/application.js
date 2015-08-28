@@ -18,4 +18,10 @@
 
 $(function() {
   $('.fancy-tags').tagsInput();
+
+  $('#expand-tags').click(function() {
+    $('#hidden-tags').show();
+    $('#expand-tags').hide();
+    return false;
+  });
 });
