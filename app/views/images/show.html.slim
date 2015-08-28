@@ -1,16 +1,13 @@
 #image-container
   = image_tag @image.image.url(:large)
 #image-tags
-  - tags = @image.tags.desc(:system).asc(:name)
-  = render partial: 'tags/tag_list', locals: {tags: tags[0..9]}
+  = render partial: 'tags/tag_list', locals: {tags: @image.tags.desc(:system).asc(:name).limit(10)}
   - if @image.tags.count > 10
-    a#expand-tags href="#"
+    a#expand-tags href="#" data-tag-path=image_tags_path(@image)
       small
         | (+
         => @image.tags.count - 10
         | more&hellip;)
-    span#hidden-tags style="display:none"
-      = render partial: 'tags/tag_list', locals: {tags: tags[10..-1]}
 - if not @image.source_url.blank?
   #image-source
     = link_to truncate(@image.source_url, length: 500), @image.source_url

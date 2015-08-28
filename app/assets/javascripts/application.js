@@ -20,8 +20,8 @@ $(function() {
   $('.fancy-tags').tagsInput();
 
   $('#expand-tags').click(function() {
-    $('#hidden-tags').show();
-    $('#expand-tags').hide();
+    path = $(this).data('tag-path');
+    $('#image-tags').load(path);
     return false;
   });
 });

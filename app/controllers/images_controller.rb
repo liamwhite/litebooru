@@ -12,6 +12,15 @@ class ImagesController < ApplicationController
     end
   end
 
+  def tags
+    @image = Image.find_by(id_number: params[:image_id])
+    if @image
+      render partial: 'tags/tag_list', layout: false, locals: {tags: @image.tags.desc(:system).asc(:name)}
+    else
+      render 'pages/render_404'
+    end
+  end
+
   def new
     @image = Image.new
   end
