@@ -21,7 +21,7 @@ $(function() {
 
   $('#expand-tags').click(function() {
     path = $(this).data('tag-path');
-    $('#image-tags').load(path).css({'max-width':'1280px','margin-left':'auto','margin-right':'auto'});
+    $('#image-tags').load(path);
     return false;
   });
 });
