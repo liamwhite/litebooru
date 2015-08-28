@@ -1,3 +1,5 @@
+require 'search_parser'
+
 module FancySearchable
   extend ActiveSupport::Concern
 
@@ -42,6 +44,14 @@ module FancySearchable
       []
     end
 
+    def default_field
+      raise "Specify a default_field on your model!"
+    end
+
+    def allowed_fields(options = {})
+      raise "Specify allowed_fields on your model!"
+    end
+
     # Main fancy_search function. Provides tire-like search API:
     #
     # response = Image.fancy_search(size: 25) do |search|
@@ -72,6 +82,23 @@ module FancySearchable
                              sort: sorts,
                              size: searchable_options.size
       return response
+    end
+
+    # Parse a user search.
+    def parsed_search(search_query, options = {}, &block)
+      search_query = search_query.strip.gsub('\n','')
+      parser = SearchParser.new(search_query, self.default_field, self.allowed_fields(options))
+      self.fancy_search(options) do |search|
+        if parser.requires_query
+          search.add_query parser.parsed
+        else
+          search.add_filter parser.parsed
+        end
+
+        if block
+          yield search
+        end
+      end
     end
   end
 end

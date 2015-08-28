@@ -1,0 +1,10 @@
+h1
+  | Searching for
+  =< h(@query)
+
+- if @images
+  = render partial: 'images/image_list', locals: {images: @images}
+- if @error
+  p
+    | Sorry, couldn't search for that:
+    =< @error.message

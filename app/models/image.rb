@@ -118,4 +118,12 @@ class Image
   def self.default_sort
     [{:created_at => :desc}]
   end
+
+  def self.default_field
+    :tag_names
+  end
+
+  def self.allowed_fields(options = {})
+    [:id, :id_number, :description, :source_url, :tag_names, :uploader]
+  end
 end

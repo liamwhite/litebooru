@@ -63,6 +63,14 @@ class Tag
     slug
   end
 
+  def self.default_field
+    :name
+  end
+
+  def self.allowed_fields(options = {})
+    [:id, :name, :image_count, :description, :short_description, :system]
+  end
+
   def self.tags_per_page
     250
   end

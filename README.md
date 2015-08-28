@@ -8,3 +8,6 @@ open booru-on-rails clone
 4. Install `rbenv` and ruby-build, and use it to `rbenv install` a recent Ruby version (currently >=2.2.2)
 5. Clone this repo.
 6. Install nginx and a webserver of your choice. Season to taste.
+
+## License
+AGPL v3

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'search/index'
+
   resources :tags, only: [:index, :show]
   resources :images do
     get 'tags'
