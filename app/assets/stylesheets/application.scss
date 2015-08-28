@@ -71,9 +71,19 @@ button[type="submit"], input[type="submit"] {
   font-family: verdana, arial, helvetica, sans-serif;
 }
 
-textarea, input[type="text"] {
+textarea, input[type="text"], div.tagsinput {
   max-width: 600px;
   width: 100%;
+}
+
+div.tagsinput {
+  background: #eee;
+  border: 1px solid #cdcdcd;
+  border-radius: 3px;
+  padding: 3px;
+  div {
+    display: inline-block;
+  }
 }
 
 textarea {
@@ -120,3 +130,4 @@ textarea {
   width: 250px;
   height: 250px;
 }
+
