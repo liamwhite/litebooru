@@ -2,6 +2,7 @@ class Image
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Timestamps
+  include FancySearchable
   include Indexable
   include Reportable
 
@@ -112,5 +113,9 @@ class Image
       indexes :uploader, type: 'string', index: 'not_analyzed'
       indexes :uploader_id, type: 'string', index: 'not_analyzed'
     end
+  end
+
+  def self.default_sort
+    [{:created_at => :desc}]
   end
 end

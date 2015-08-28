@@ -1,5 +1,6 @@
 class Tag
   include Mongoid::Document
+  include FancySearchable
   include Indexable
   include Sluggable
 

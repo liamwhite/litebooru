@@ -1,6 +1,9 @@
 class ImagesController < ApplicationController
   def index
-    @images = Image.search(query: {match_all: {}}, sort: {created_at: :desc}).records
+    @images_search = Image.fancy_search(size: 25) do |search|
+      search.add_sort :created_at, :desc
+    end
+    @images = @images_search.records
   end
 
   def show
