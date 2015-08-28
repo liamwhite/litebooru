@@ -13,6 +13,9 @@ html
           a#home href="/" Litebooru
           a#upload< href=new_image_path
             i.fa.fa-fw.fa-upload
+        span
+          = form_tag(search_index_path, method: :get) do
+            = text_field_tag :q, (@query or (@tag.try(:name))).to_s, placeholder: 'Search'
       #right
         span
          - if user_signed_in?
