@@ -53,4 +53,8 @@ class User
   has_many :hidden_images, class_name: 'Image'
   has_many :reports_made, inverse_of: :user, class_name: 'Report'
   has_many :managed_reports, inverse_of: :admin, class_name: 'Report'
+
+  def to_param
+    slug
+  end
 end

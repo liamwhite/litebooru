@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :profiles, only: [:show]
   get 'search/index'
 
   resources :tags, only: [:index, :show]
