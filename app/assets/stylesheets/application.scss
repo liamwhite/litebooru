@@ -84,6 +84,10 @@ div.tagsinput {
   div {
     display: inline-block;
   }
+  .not_valid {
+    background: #FBD8DB !important;
+    color: #90111A !important;
+  }
 }
 
 textarea {
