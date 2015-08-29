@@ -31,7 +31,7 @@ a {
   padding: 0;
   display: table;
   width: 100%;
-  div {
+  > div {
     display: table-cell;
     span {
       display: inline-block;
@@ -149,3 +149,33 @@ textarea {
   height: 250px;
 }
 
+
+.dropdown-container {
+  display: inline-block;
+  text-align: left;
+
+  div {
+    margin: 0;
+  }
+  .dropdown-menu {
+    margin: inherit;
+    display: none;
+    position: absolute;
+    border: none;
+    z-index: 5;
+
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+
+    ul {
+      font-size: 11pt;
+      li {
+        padding: 5px;
+        &:hover {
+          background: lightblue;
+        }
+      }
+    }
+  }
+}
