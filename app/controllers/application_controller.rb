@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
   before_filter do
     @start_time = Time.now
   end
+  before_filter :configure_permitted_parameters_for_devise, if: :devise_controller?
+
+  def configure_permitted_parameters_for_devise
+    devise_parameter_sanitizer.for(:sign_up) << :name
+  end
 
   def render_404_if_not(cond, &block)
     if cond
