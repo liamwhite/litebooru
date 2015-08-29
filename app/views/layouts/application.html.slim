@@ -28,7 +28,7 @@ html
                       i.fa.fa-user>
                       | Profile
                   li
-                    a href=destroy_user_session_path data-method="delete" rel="nofollow"
+                    a href=destroy_user_session_path data-method="delete" data-confirm=t('are_you_sure') rel="nofollow"
                       i.fa.fa-sign-out>
                       | Sign out
           - else
