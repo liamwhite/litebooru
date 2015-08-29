@@ -25,3 +25,39 @@ $(function() {
     return false;
   });
 });
+
+// fancy thumbscaling
+$(function() {
+    var $window = $(window);
+    var $style = null;
+
+    function setThumbSizes(width) {
+        // create an inline style element
+        if (!$style) {
+            $style = document.createElement("style");
+            $style.type = "text/css";
+            document.head.appendChild($style);
+        }
+        if (width) {
+          $style.innerHTML = ".thumb{max-width:"+width+"px!important;max-height:"+width+"px!important}";
+        } else {
+          $style.innerHTML= "";
+        }
+    }
+
+    function checkWidth() {
+        var width = $(document).width();
+        if (width < 800) {
+            var t_size = Math.round((width-10)/(Math.round(((Math.floor((width-10)/250))+(Math.ceil((width-10)/150)))/2)));
+            setThumbSizes(t_size-12);
+        } else {
+          setThumbSizes(null);
+        }
+    }
+    
+    // run on load
+    checkWidth();
+    
+    // bind to resize
+    $window.resize(checkWidth);
+});
