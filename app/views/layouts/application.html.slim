@@ -18,14 +18,13 @@ html
             = text_field_tag :q, (@query or (@tag.try(:name))).to_s, placeholder: 'Search'
       #right
         span
-         - if user_signed_in?
-           a#logout href=destroy_user_session_path data-method="delete" rel="nofollow"
-             i.fa.fa-sign-out>
-             | Logout
-         - else
-           a#login href=new_user_session_path
-             i.fa.fa-sign-in>
-             | Login
+          - if user_signed_in?
+            a#logout href=destroy_user_session_path data-method="delete" rel="nofollow"
+              i.fa.fa-sign-out>
+              | Logout
+          - else
+            = form_tag(new_user_session_path, method: :get) do
+              = submit_tag "Login"
     #container
       #content
         = yield
