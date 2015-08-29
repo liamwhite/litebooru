@@ -19,14 +19,18 @@ html
       #right
         span
           - if user_signed_in?
-            span.dropdown-container
+            span.dropdown-container.sw
               a.dropdown-icon href="#" Profile
               .dropdown-menu
                 ul
                   li
-                    a href=profile_path(current_user) Profile
+                    a href=profile_path(current_user)
+                      i.fa.fa-user>
+                      | Profile
                   li
-                    a href=destroy_user_session_path data-method="delete" rel="nofollow" Sign out
+                    a href=destroy_user_session_path data-method="delete" rel="nofollow"
+                      i.fa.fa-sign-out>
+                      | Sign out
           - else
             = form_tag(new_user_session_path, method: :get) do
               = submit_tag "Login"
