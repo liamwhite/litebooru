@@ -13,8 +13,7 @@
             - if comment.hidden_from_users
               strong.post-deleted This comment has been deleted by a moderator or marked as spam
             - else
-              / TODO: support markdown
-              = h comment.body
+              = render_markdown comment.body
     .post-options
       .left-options
         .pad

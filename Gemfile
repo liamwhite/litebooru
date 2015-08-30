@@ -16,6 +16,7 @@ gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
 gem 'kaminari'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug'

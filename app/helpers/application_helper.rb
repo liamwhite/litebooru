@@ -13,4 +13,9 @@ module ApplicationHelper
   rescue
     "(nil ms)"
   end
+
+  def render_markdown(text)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_intra_emphasis: true, tables: true, fenced_code_blocks: true, autolink: true, strikethrough: true, superscript: true, underline: true)
+    markdown.render(text).html_safe
+  end
 end
