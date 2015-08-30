@@ -17,6 +17,7 @@
 //= require_tree .
 
 $(function() {
+  $('time').timeago();
   $('.fancy-tags').tagsInput();
 
   $('#expand-tags').click(function() {
