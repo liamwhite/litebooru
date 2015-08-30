@@ -1,0 +1,8 @@
+Litebooru Contributors
+
+Some code in Litebooru is taken from Derpibooru (https://derpibooru.org/).
+Of the Derpibooru team, I'd like to thank these people for their contributions to this codebase:
+
+- Clover the Clever, for starting this all off
+- @k-anon for writing SearchParser, and providing inspiration for the current fancy_search API
+- @barbeque-squared for some JavaScript that is used in dropdowns
