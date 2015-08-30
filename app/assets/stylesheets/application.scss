@@ -154,9 +154,14 @@ textarea {
   display: inline-block;
   text-align: left;
 
-  div {
+  div, .dropdown-icon {
     margin: 0;
   }
+  .dropdown-icon .avatar-img {
+    vertical-align: middle;
+    border-radius: 3px;
+  }
+
   .dropdown-menu {
     margin: inherit;
     display: none;

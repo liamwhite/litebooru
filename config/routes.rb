@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     get 'tags'
   end
 
+  namespace :pages do
+    get 'activity'
+    get 'notifications'
+  end
+
   root to: 'pages#activity'
   devise_for :users
 

@@ -17,21 +17,26 @@ html
           = form_tag(search_index_path, method: :get) do
             = text_field_tag :q, (@query or (@tag.try(:name))).to_s, placeholder: 'Search'
       #right
-        span
-          - if user_signed_in?
-            span.dropdown-container.sw
-              a.dropdown-icon href="#" Profile
-              .dropdown-menu
-                ul
-                  li
-                    a href=profile_path(current_user)
-                      i.fa.fa-user>
-                      | Profile
-                  li
-                    a href=destroy_user_session_path data-method="delete" data-confirm=t('are_you_sure') rel="nofollow"
-                      i.fa.fa-sign-out>
-                      | Sign out
-          - else
+        - if user_signed_in?
+          span
+            a#notifications href=pages_notifications_path
+              i.fa.fa-fw.fa-bell
+          span.dropdown-container.sw
+            a.dropdown-icon.profile href="#"
+              = image_tag current_user.avatar.url(:small), size: '25x25', class: 'avatar-img'
+              i.fa.fa-caret-down<
+            .dropdown-menu
+              ul
+                li
+                  a href=profile_path(current_user)
+                    i.fa.fa-user>
+                    | Profile
+                li
+                  a href=destroy_user_session_path data-method="delete" data-confirm=t('are_you_sure') rel="nofollow"
+                    i.fa.fa-sign-out>
+                    | Sign out
+        - else
+          span
             = form_tag(new_user_session_path, method: :get) do
               = submit_tag "Login"
     #container
