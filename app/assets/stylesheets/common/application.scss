@@ -1,0 +1,28 @@
+@import "global";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10pt;
+  > * {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+div, p {
+  margin-bottom: 10pt;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+  margin-bottom: 5pt;
+}
+
+a {
+  text-decoration: none;
+}
+
+@import "*";

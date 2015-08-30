@@ -1,0 +1,32 @@
+#header {
+  background-color: #e6e6e6;
+  border-bottom: 1px solid #ddd;
+  padding: 0;
+  display: table;
+  width: 100%;
+  > div {
+    display: table-cell;
+    span {
+      display: inline-block;
+      margin: 5px;
+      font-size: 12pt;
+      a {
+        color: black;
+      }
+    }
+  }
+  #left span {
+    margin-left: 10px;
+  }
+  #right {
+    text-align: right;
+    span { margin-right: 10px; }
+  }
+  form input {
+    margin: 0;
+  }
+}
+
+#footer {
+  @extend %centered;
+}

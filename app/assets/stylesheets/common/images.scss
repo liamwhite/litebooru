@@ -1,0 +1,56 @@
+#image-container, #image-tags, #image-source {
+  @extend %centered;
+}
+
+#image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+#image-tags {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tag {
+  @extend %rounded-corners;
+  display: inline-block;
+  background: #cde69a;
+  border: 1px solid #9ecf3c;
+  padding: 5px;
+  margin-bottom: 4px;
+  margin-right: 2px;
+  a {
+    color: darken(#9ecf3c, 20%);
+  }
+}
+
+.thumb {
+  @extend %rounded-corners;
+  padding: 0;
+  margin-right: 4px;
+  display: inline-block;
+  border: 1px solid #b7c7cf;
+  vertical-align: middle;
+  .block {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .block:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+  }
+  .block:before, img {
+    vertical-align: middle;
+    max-width: 100%;
+  }
+}
+
+.thumb-normal {
+  width: 250px;
+  height: 250px;
+}

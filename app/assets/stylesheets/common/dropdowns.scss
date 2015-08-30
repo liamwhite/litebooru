@@ -1,0 +1,35 @@
+.dropdown-container {
+  display: inline-block;
+  text-align: left;
+
+  div, .dropdown-icon {
+    margin: 0;
+  }
+  .dropdown-icon .avatar-img {
+    @extend %rounded-corners;
+    vertical-align: middle;
+  }
+
+  .dropdown-menu {
+    @extend %rounded-corners;
+    margin: inherit;
+    display: none;
+    position: absolute;
+    border: none;
+    z-index: 5;
+
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
+
+    ul {
+      font-size: 11pt;
+      li {
+        padding: 5px;
+        &:hover {
+          background: #e4f8ff;
+        }
+      }
+    }
+  }
+}
