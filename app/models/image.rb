@@ -2,18 +2,18 @@ class Image
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Timestamps
+  include AnonymizableUserAttributable
   include FancySearchable
   include Indexable
   include Reportable
 
   # Fields
-  field :ip, type: String
-  field :user_agent, type: String, default: ""
   field :source_url, type: String, default: ""
   field :description, type: String, default: ""
   field :id_number, type: Integer
   field :hidden_from_users, type: Boolean, default: false
   field :hide_reason, type: String
+  field :comment_count, type: Integer, default: 0
 
   # Indexes
   index id_number: 1
@@ -22,6 +22,7 @@ class Image
 
   # Relations
   has_and_belongs_to_many :tags, validate: false, inverse_of: nil
+  has_many :comments, validate: false
   belongs_to :user, inverse_of: :images
   belongs_to :hidden_by_user, class_name: 'User', inverse_of: :hidden_images
 
@@ -86,17 +87,21 @@ class Image
       created_at: self.created_at,
       updated_at: self.updated_at,
       description: self.description,
-      ip: self.ip,
       hidden_from_users: self.hidden_from_users,
+      comment_count: self.comment_count,
       source_url: self.source_url,
       tag_ids: self.tags.map{|t| t.id.to_s},
       tag_names: self.tags.map(&:name),
-      uploader: self.user.try(:name).to_s,
-      uploader_id: self.user_id.to_s,
+      uploader: self.author.try(:name).to_s,
     }
   end
 
-  alias as_indexed_json as_json
+  def as_indexed_json(options = {})
+    d = self.as_json(options)
+    d[:ip] = self.ip
+    d[:uploader_id] = self.user_id.to_s
+    return d
+  end
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false', _all: {enabled: false} do
