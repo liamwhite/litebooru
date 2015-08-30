@@ -16,7 +16,7 @@ class Comment
   belongs_to :deleted_by, class_name: "User"
 
   # Indexes
-  index image_id: 1, created_at: 1
+  index image_id: 1, created_at: -1
   index created_at: 1
 
   # Callbacks
@@ -48,6 +48,7 @@ class Comment
     d[:body] = self.body.to_s
     d[:user_id] = self.user_id.to_s
     d[:ip] = self.ip
+    d
   end
 
   settings index: { number_of_shards: 1 } do

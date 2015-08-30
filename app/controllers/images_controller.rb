@@ -9,6 +9,7 @@ class ImagesController < ApplicationController
   def show
     @image = Image.find_by(id_number: params[:id])
     render_404_if_not(@image) do
+      @comments = @image.comments.desc(:created_at).limit(25)
       render
     end
   end

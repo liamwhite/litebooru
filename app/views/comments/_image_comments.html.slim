@@ -1,0 +1,22 @@
+- for comment in comments
+  article.comment
+    a id="comment_#{comment.id.to_s}"
+    .post-content
+      .post-avatar
+        .pad
+          = avatar_url comment, :medium, '50x50'
+      .post-body
+        .pad
+          .post-author
+            = link_to_author comment
+          .post-text
+            - if comment.hidden_from_users
+              strong.post-deleted This comment has been deleted by a moderator or marked as spam
+            - else
+              / TODO: support markdown
+              = h comment.body
+    .post-options
+      .left-options
+        .pad
+          | Posted
+          =< friendly_time comment.created_at

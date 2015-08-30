@@ -7,10 +7,17 @@
   height: auto;
 }
 
-#image-tags {
-  max-width: 1280px;
+#image-tags, #image-comments {
   margin-left: auto;
   margin-right: auto;
+}
+
+#image-tags {
+  max-width: 1280px;
+}
+
+#image-comments {
+  max-width: 900px;
 }
 
 .tag {

@@ -11,3 +11,7 @@
 - if not @image.source_url.blank?
   #image-source
     = link_to truncate(@image.source_url, length: 500), @image.source_url
+
+- if @comments.count > 0
+  #image-comments
+    = render partial: 'comments/image_comments', locals: {comments: @comments}

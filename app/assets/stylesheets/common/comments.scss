@@ -1,0 +1,43 @@
+article.comment {
+  min-height: 60px;
+  > div {
+    display: table;
+    margin-bottom: 0;
+    width: 100%;
+    > div {
+      display: table-cell;
+      vertical-align: top;
+      div { margin-bottom: 0; }
+    }
+  }
+  .pad {
+    padding: 5px; // because width:100% is a cunt
+  }
+
+  @extend %rounded-corners;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+
+  // Main content table, avatar on left, comment on right
+  .post-content {
+    table-layout: fixed;
+    .post-avatar {
+      img {
+        @extend %rounded-corners;
+      }
+      width: 60px;
+    }
+    .post-author {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .post-body img {
+      max-width: 100%;
+    }
+  }
+  // Post options (posted at, reply buttons, etc)
+  .post-options {
+    border-top: 1px solid #ccc;
+    font-size: 80%;
+  }
+}
