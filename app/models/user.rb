@@ -49,7 +49,7 @@ class User
   set_slugged_field :name
   field :role, type: String, default: 'user'
 
-  has_mongoid_attached_file :avatar, styles: {small: '25x25>', medium: '50x50>', large: '100x100>', huge: '200x200>'}, default_url: 'avatar-missing.svg'
+  has_mongoid_attached_file :avatar, styles: {tiny: '20x20>', small: '25x25>', medium: '50x50>', large: '100x100>', huge: '200x200>'}, default_url: 'avatar-missing.svg'
   validates_attachment :avatar, content_type: {content_type: %w|image/png image/jpeg image/gif|}, size: {in: 0..500.kilobytes}
 
   # Relations
