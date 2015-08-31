@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def render_404_if_not(cond, &block)
     if cond
-      yield
+      yield if block
     else
       render 'pages/render_404'
     end

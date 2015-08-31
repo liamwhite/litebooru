@@ -19,6 +19,11 @@ class Comment
   index image_id: 1, created_at: -1
   index created_at: 1
 
+  # Validations
+  validates_presence_of :body
+
+  ALLOWED_PARAMETERS = [:body, :anonymous]
+
   # Callbacks
   after_create do |c|
     c.image.set(updated_at: Time.now)

@@ -1,0 +1,3 @@
+= form_for([@image, @comment]) do |f|
+  .field= f.text_area :body, placeholder: 'Leave a comment'
+  .actions= f.submit 'Post reply', data:{disable_with: 'Posting...'}
