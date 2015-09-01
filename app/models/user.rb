@@ -61,9 +61,21 @@ class User
   validates_uniqueness_of :downcase_name, message: 'Name is already taken.'
   validates_attachment :avatar, content_type: {content_type: %w|image/png image/jpeg image/gif|}, size: {in: 0..500.kilobytes}
 
-  ALLOWED_DEVISE_PARAMETERS = [:avatar]
+  ALLOWED_DEVISE_PARAMETERS = [:avatar, :remove_avatar]
+
+  # Callbacks
+  before_validation do
+    avatar.clear if @remove_avatar
+    downcase_name = name.downcase if not downcase_name
+  end
+
 
   def to_param
     slug
+  end
+
+  attr_reader :remove_avatar
+  def remove_avatar=(value)
+    @remove_avatar = value.to_i.zero?
   end
 end

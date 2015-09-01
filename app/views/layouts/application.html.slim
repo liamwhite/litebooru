@@ -30,7 +30,7 @@ html
                 li
                   a href=profile_path(current_user)
                     i.fa.fa-user>
-                    | Profile
+                    = current_user.name
                 li
                   a href=edit_user_registration_path
                     i.fa.fa-wrench>

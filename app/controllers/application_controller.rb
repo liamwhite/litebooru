@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters_for_devise
     devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:account_update).concat(User::ALLOWED_DEVISE_PARAMETERS).uniq!
   end
 
   def render_404_if_not(cond, &block)

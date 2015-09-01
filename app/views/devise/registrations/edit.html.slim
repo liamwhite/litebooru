@@ -4,11 +4,19 @@ h2
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = devise_error_messages!
   .field
+    => f.label :avatar, 'Upload Image'
+    = f.file_field :avatar
+  - if current_user.avatar
+    .field
+      => f.check_box :remove_avatar
+      = f.label :remove_avatar, 'Remove current avatar'
+  br
+  .field
     .fieldlabel= f.label :email
     = f.email_field :email, autofocus: true
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     div
-      | Currently waiting confirmation for: 
+      | Currently awaiting confirmation for: 
       = resource.unconfirmed_email
   .field
     .fieldlabel
