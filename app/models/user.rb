@@ -50,13 +50,18 @@ class User
   field :role, type: String, default: 'user'
 
   has_mongoid_attached_file :avatar, styles: {small: '20x20>', medium: '50x50>', large: '100x100>', huge: '200x200>'}, default_url: 'avatar-missing.svg'
-  validates_attachment :avatar, content_type: {content_type: %w|image/png image/jpeg image/gif|}, size: {in: 0..500.kilobytes}
 
   # Relations
   has_many :images
   has_many :hidden_images, class_name: 'Image'
   has_many :reports_made, inverse_of: :user, class_name: 'Report'
   has_many :managed_reports, inverse_of: :admin, class_name: 'Report'
+
+  # Validations
+  validates_uniqueness_of :downcase_name, message: 'Name is already taken.'
+  validates_attachment :avatar, content_type: {content_type: %w|image/png image/jpeg image/gif|}, size: {in: 0..500.kilobytes}
+
+  ALLOWED_DEVISE_PARAMETERS = [:avatar]
 
   def to_param
     slug
