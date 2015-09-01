@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :show]
   resources :images do
     get 'tags'
+    get 'comments'
+    resources :comments
   end
 
   namespace :pages do
