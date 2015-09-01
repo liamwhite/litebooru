@@ -23,6 +23,12 @@ h1, h2, h3, h4, h5 {
 
 a {
   text-decoration: none;
+  &, &:active, &:visited {
+    color: #57a4db;
+  }
+  &:hover {
+    color: #9273d0;
+  }
 }
 
 blockquote {
