@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
   before_filter do
     @start_time = Time.now
   end
+
   before_filter :configure_permitted_parameters_for_devise, if: :devise_controller?
+  before_filter :unread_notifications
 
   def configure_permitted_parameters_for_devise
     devise_parameter_sanitizer.for(:sign_up) << :name
@@ -18,5 +20,9 @@ class ApplicationController < ActionController::Base
     else
       render 'pages/render_404'
     end
+  end
+
+  def unread_notifications
+    @unread_notifications = Notification.in(id: current_user.unread_notification_ids) if current_user
   end
 end

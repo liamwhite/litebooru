@@ -56,6 +56,12 @@ class User
   has_many :hidden_images, class_name: 'Image'
   has_many :reports_made, inverse_of: :user, class_name: 'Report'
   has_many :managed_reports, inverse_of: :admin, class_name: 'Report'
+  has_many :unread_notifications, inverse_of: nil, validate: false, class_name: 'Notification'
+
+  # Indexes
+  index name: 1
+  index downcase_name: 1
+  index unread_notifications: 1
 
   # Validations
   validates_uniqueness_of :downcase_name, message: 'Name is already taken.'
