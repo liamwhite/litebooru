@@ -2,7 +2,7 @@ module Notifyable
   extend ActiveSupport::Concern
 
   included do
-    field :watcher_ids, type: Array
+    has_many :watchers, inverse_of: nil, validate: false, class_name: 'User'
   end
 
   def notify(user, action, users_to_exclude=[])

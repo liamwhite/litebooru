@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def unread_notifications
-    @unread_notifications = Notification.in(id: current_user.unread_notification_ids) if current_user
+    @unread_notifications = current_user.unread_notifications if current_user
   end
 end
