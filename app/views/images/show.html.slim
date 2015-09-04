@@ -16,5 +16,5 @@
   - @comment = Comment.new
   = render partial: 'comments/form'
 #image-comments
-- if @comments.count > 0
-  = render partial: 'comments/image_comments', locals: {comments: @comments}
+  - if @comments.count > 0
+    = render partial: 'comments/image_comments', locals: {comments: @comments}
