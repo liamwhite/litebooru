@@ -8,4 +8,4 @@
       = hidden_field_tag :old_tag_list, @image.tag_list
       .field= text_area_tag :tag_list, @image.tag_list, class: 'fancy-tags'
       .field= text_field_tag :source_url, @image.source_url
-      .actions= submit_tag "Save Tags and Source", data:{disable_with: 'Saving...'}
+      .actions= submit_tag "Save Tags and Source"
