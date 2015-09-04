@@ -49,10 +49,10 @@
       testSubject.appendTo('body');
     }
 
-    input.data('minwidth', minWidth);
+    //input.data('minwidth', minWidth);
     input.data('maxwidth', maxWidth);
     input.data('tester_id', testerId);
-    input.css('width', minWidth);
+    //input.css('width', minWidth);
   };
 
   $.fn.addTag = function(value,options) {
