@@ -1,17 +1,12 @@
 #image-container
   = image_tag @image.image.url(:large)
-#image-tags
-  = render partial: 'tags/tag_list', locals: {tags: @image.tags.desc(:system).asc(:name).limit(10)}
-  - if @image.tags.count > 10
-    a#expand-tags href="#" data-tag-path=image_tags_path(@image)
-      small
-        | (+
-        => @image.tags.count - 10
-        | more&hellip;)
-- if not @image.source_url.blank?
-  #image-source
-    = link_to truncate(@image.source_url, length: 500), @image.source_url
-
+#image-metadata
+  = render partial: 'images/tags_source'
+#image-actions
+  ul#image-menu
+    li
+      a#edit-tags href="#"
+        i.fa.fa-pencil
 #comment-form
   - @comment = Comment.new
   = render partial: 'comments/form'

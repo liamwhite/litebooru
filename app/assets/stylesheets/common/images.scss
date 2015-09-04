@@ -1,4 +1,4 @@
-#image-container, #image-tags, #image-source {
+#image-container, #image-tags, #image-source, #image-actions {
   @extend %centered;
 }
 
@@ -7,7 +7,7 @@
   height: auto;
 }
 
-#image-tags, #image-comments, #comment-form {
+#image-tags, #image-comments, #comment-form, #update-metadata, #image-actions {
   margin-left: auto;
   margin-right: auto;
 }
@@ -16,8 +16,12 @@
   max-width: 1280px;
 }
 
-#image-comments, #comment-form, #comment-form textarea {
+#image-comments, #comment-form, #comment-form textarea, #new_image, #update-metadata, #image-actions {
   max-width: 900px;
+}
+
+#image-menu {
+  font-size: 150%;
 }
 
 .tag {

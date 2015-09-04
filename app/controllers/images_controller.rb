@@ -26,6 +26,14 @@ class ImagesController < ApplicationController
     end
   end
 
+  def update_metadata
+    @image = Image.find_by(id_number: params[:image_id])
+    render_404_if_not(@image) do
+      @image.set_tag_list(params[:tag_list])
+      render partial: 'images/tags_source', layout: false
+    end
+  end
+
   def new
     @image = Image.new
   end

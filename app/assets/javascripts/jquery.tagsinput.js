@@ -161,7 +161,7 @@
       interactive:true,
       defaultText:'add a tag',
       minChars:0,
-      width:'600px',
+      width:'100%',
       height:'100px',
       autocomplete: {selectFirst: false },
       hide:true,

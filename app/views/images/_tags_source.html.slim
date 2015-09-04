@@ -1,0 +1,11 @@
+#image-tags
+  = render partial: 'tags/tag_list', locals: {tags: @image.tags.desc(:system).asc(:name)[0..9]}
+- if not @image.source_url.blank?
+  #image-source
+    = link_to truncate(@image.source_url, length: 500), @image.source_url
+  #update-metadata style="display:none"
+    = form_tag image_update_metadata_path(@image), method: :put, remote: true, id: 'image_metadata_form' do
+      = hidden_field_tag :old_tag_list, @image.tag_list
+      .field= text_area_tag :tag_list, @image.tag_list, class: 'fancy-tags'
+      .field= text_field_tag :source_url, @image.source_url
+      .actions= submit_tag "Save Tags and Source", data:{disable_with: 'Saving...'}
