@@ -14,6 +14,11 @@ class ImagesController < ApplicationController
     end
   end
 
+  def comments
+    @image = Image.find_by(id_number: params[:id])
+    @comments = @image.comments.desc(:created_at).limit(25)
+  end
+
   def tags
     @image = Image.find_by(id_number: params[:image_id])
     render_404_if_not(@image) do

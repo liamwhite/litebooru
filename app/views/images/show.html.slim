@@ -12,8 +12,9 @@
   #image-source
     = link_to truncate(@image.source_url, length: 500), @image.source_url
 
+#comment-form
+  - @comment = Comment.new
+  = render partial: 'comments/form'
+#image-comments
 - if @comments.count > 0
-  #image-comments
-    - @comment = Comment.new
-    = render partial: 'comments/form'
-    = render partial: 'comments/image_comments', locals: {comments: @comments}
+  = render partial: 'comments/image_comments', locals: {comments: @comments}

@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
       @comment.user_agent = request.env['HTTP_USER_AGENT']
       if @comment.assign_attributes(params.require(:comment).permit(Comment::ALLOWED_PARAMETERS))
         @comment.save!
-        render head: :ok
+        render partial: 'comments/image_comments', layout: false, locals: {comments: @image.comments.desc(:created_at).limit(25)}
       end
     end
   end

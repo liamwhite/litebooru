@@ -1,3 +1,7 @@
-= form_for([@image, @comment]) do |f|
-  .field= f.text_area :body, placeholder: 'Leave a comment'
-  .actions= f.submit 'Post reply', data:{disable_with: 'Posting...'}
+= form_for([@image, @comment], data:{remote: true}) do |f|
+  .field= f.text_area :body, placeholder: 'Syntax is formatted with Markdown'
+  - if current_user
+    .field
+      => f.check_box :anonymous
+      = f.label :anonymous, 'Post anonymously'
+  .actions= f.submit 'Post comment', data:{disable_with: 'Posting...'}
