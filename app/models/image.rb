@@ -5,6 +5,7 @@ class Image
   include AnonymizableUserAttributable
   include FancySearchable
   include Indexable
+  include Notifyable
   include Reportable
 
   # Fields

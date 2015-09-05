@@ -23,7 +23,13 @@ class CommentsController < ApplicationController
       @comment.user = current_user
       @comment.user_agent = request.env['HTTP_USER_AGENT']
       if @comment.assign_attributes(params.require(:comment).permit(Comment::ALLOWED_PARAMETERS))
+        # Save and index comment
         @comment.save!
+        @comment.update_index
+
+        # Notify watchers and subscribe poster
+        @image.subscribe!(@comment.user)
+        @image.notify(@comment.author, 'commented on', [@comment.author])
         render partial: 'comments/image_comments', layout: false, locals: {comments: @image.comments.desc(:created_at).limit(25)}
       end
     end
