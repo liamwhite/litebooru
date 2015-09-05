@@ -22,6 +22,11 @@
 
 #image-menu {
   font-size: 150%;
+  li {
+    display: inline-block;
+    margin: 5px;
+  }
+  a { color: #000; }
 }
 
 .tag {

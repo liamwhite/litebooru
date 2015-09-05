@@ -7,6 +7,9 @@
     li
       a#edit-tags href="#"
         i.fa.fa-pencil
+    li
+      a#download-image href=@image.image.url
+        i.fa.fa-download
 #comment-form
   - @comment = Comment.new
   = render partial: 'comments/form'
