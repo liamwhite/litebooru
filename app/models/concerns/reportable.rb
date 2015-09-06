@@ -2,7 +2,7 @@ module Reportable
   extend ActiveSupport::Concern
 
   included do
-    has_many :reports, validate: false, inverse_of: :reportable
+    has_many :reports, validate: false, as: :reportable
     before_destroy do |reportable|
       reportable.reports.each do |report|
        report.set(reportable: nil)

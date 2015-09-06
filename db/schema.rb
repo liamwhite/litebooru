@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906212018) do
+ActiveRecord::Schema.define(version: 20150906221832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,18 +37,18 @@ ActiveRecord::Schema.define(version: 20150906212018) do
     t.string   "source_url"
     t.string   "description"
     t.integer  "id_number",         default: 0
-    t.boolean  "hidden_from_users"
     t.string   "hide_reason"
     t.integer  "comment_count"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "tag_ids",                                    array: true
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "user_id"
     t.integer  "hidden_by_user_id"
-    t.integer  "watcher_ids",                                array: true
     t.inet     "ip"
     t.string   "user_agent"
     t.boolean  "anonymous"
+    t.integer  "watcher_ids",       default: [], null: false, array: true
+    t.integer  "tag_ids",           default: [], null: false, array: true
+    t.boolean  "hidden_from_users",              null: false
   end
 
   add_index "images", ["hidden_from_users"], name: "index_images_on_hidden_from_users", using: :btree
@@ -80,16 +80,16 @@ ActiveRecord::Schema.define(version: 20150906212018) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string   "description"
     t.integer  "image_count"
     t.string   "name"
     t.string   "namespace"
     t.string   "name_in_namespace"
-    t.string   "short_descripion"
     t.boolean  "system"
     t.string   "slug"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "short_description", default: "", null: false
+    t.string   "description",       default: "", null: false
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20150906212018) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-    t.integer  "unread_notification_ids",                           array: true
+    t.integer  "unread_notification_ids", default: [], null: false, array: true
   end
 
   add_index "users", ["downcase_name"], name: "index_users_on_downcase_name", using: :btree
