@@ -1,10 +1,6 @@
 module Notifyable
   extend ActiveSupport::Concern
 
-  included do
-    has_many :watchers, inverse_of: nil, class_name: 'User'
-  end
-
   def notify(user, action, users_to_exclude=[])
     return if watcher_ids.count == 0
 

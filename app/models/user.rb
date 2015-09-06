@@ -12,5 +12,4 @@ class User < ActiveRecord::Base
   has_many :hidden_images, class_name: 'Image'
   has_many :reports_made, inverse_of: :user, class_name: 'Report'
   has_many :managed_reports, inverse_of: :admin, class_name: 'Report'
-  has_many :unread_notifications, inverse_of: nil, validate: false, class_name: 'Notification'
 end

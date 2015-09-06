@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  include AnonymizableUserAttributable
   include Reportable
 
   # Relations

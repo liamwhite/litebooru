@@ -1,4 +1,5 @@
 class Report < ActiveRecord::Base
+  include UserAttributable
 
   # Relations
   belongs_to :user, inverse_of: :reports_made

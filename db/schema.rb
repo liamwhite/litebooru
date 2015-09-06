@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906173135) do
+ActiveRecord::Schema.define(version: 20150906212018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(version: 20150906173135) do
     t.integer  "user_id"
     t.integer  "image_id"
     t.integer  "deleted_by_id"
+    t.inet     "ip"
+    t.string   "user_agent"
+    t.boolean  "anonymous"
   end
 
   add_index "comments", ["created_at"], name: "index_comments_on_created_at", using: :btree
@@ -42,6 +45,10 @@ ActiveRecord::Schema.define(version: 20150906173135) do
     t.integer  "tag_ids",                                    array: true
     t.integer  "user_id"
     t.integer  "hidden_by_user_id"
+    t.integer  "watcher_ids",                                array: true
+    t.inet     "ip"
+    t.string   "user_agent"
+    t.boolean  "anonymous"
   end
 
   add_index "images", ["hidden_from_users"], name: "index_images_on_hidden_from_users", using: :btree
@@ -68,6 +75,8 @@ ActiveRecord::Schema.define(version: 20150906173135) do
     t.integer  "admin_id"
     t.integer  "reportable_id"
     t.string   "reportable_type"
+    t.inet     "ip"
+    t.string   "user_agent"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -88,21 +97,22 @@ ActiveRecord::Schema.define(version: 20150906173135) do
   add_index "tags", ["system"], name: "index_tags_on_system", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                                null: false
-    t.string   "downcase_name",                       null: false
+    t.string   "name",                                 null: false
+    t.string   "downcase_name",                        null: false
     t.string   "slug"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                   default: "", null: false
+    t.string   "encrypted_password",      default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",           default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "unread_notification_ids",                           array: true
   end
 
   add_index "users", ["downcase_name"], name: "index_users_on_downcase_name", using: :btree
@@ -110,5 +120,6 @@ ActiveRecord::Schema.define(version: 20150906173135) do
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
+  add_index "users", ["unread_notification_ids"], name: "index_users_on_unread_notification_ids", using: :gin
 
 end

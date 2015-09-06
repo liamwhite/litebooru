@@ -1,4 +1,6 @@
 class Image < ActiveRecord::Base
+  include AnonymizableUserAttributable
+  include Notifyable
   include Reportable
 
   # Relations
