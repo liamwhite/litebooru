@@ -9,15 +9,6 @@ Elasticsearch::Model::Response::Records.__send__(
   :include, Elasticsearch::Model::Response::Pagination::Kaminari
 )
 
-# Ordering hack, requires Kaminari support to be patched in
-Elasticsearch::Model::Adapter::Mongoid::Records.class_eval do
-  def records
-    klass.where(:id.in => ids).instance_exec(response.response['hits']['hits']) do |hits|
-      self.entries.sort_by { |e| hits.index { |hit| hit['_id'].to_s == e.id.to_s } }
-    end
-  end
-end
-
 module Indexable
   extend ActiveSupport::Concern
 

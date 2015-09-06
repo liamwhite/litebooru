@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: litebooru_development
+  host: localhost
+  pool: 5
+  username: litebooru
+  password: password

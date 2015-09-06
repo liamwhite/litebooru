@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  source_url: MyString
+  description: MyString
+  id_number: 1
+  hidden_from_users: false
+  hide_reason: MyString
+  comment_count: 1
+
+two:
+  source_url: MyString
+  description: MyString
+  id_number: 1
+  hidden_from_users: false
+  hide_reason: MyString
+  comment_count: 1
