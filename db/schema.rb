@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906170919) do
+ActiveRecord::Schema.define(version: 20150906173135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,13 @@ ActiveRecord::Schema.define(version: 20150906170919) do
     t.time     "deleted_at"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.integer  "user_id"
+    t.integer  "image_id"
+    t.integer  "deleted_by_id"
   end
 
   add_index "comments", ["created_at"], name: "index_comments_on_created_at", using: :btree
+  add_index "comments", ["image_id", "created_at"], name: "index_comments_on_image_id_and_created_at", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "source_url"
@@ -35,23 +39,35 @@ ActiveRecord::Schema.define(version: 20150906170919) do
     t.integer  "comment_count"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.integer  "tag_ids",                                    array: true
+    t.integer  "user_id"
+    t.integer  "hidden_by_user_id"
   end
 
   add_index "images", ["hidden_from_users"], name: "index_images_on_hidden_from_users", using: :btree
   add_index "images", ["id_number"], name: "index_images_on_id_number", unique: true, using: :btree
+  add_index "images", ["tag_ids"], name: "index_images_on_tag_ids", using: :gin
 
   create_table "notifications", force: :cascade do |t|
     t.string   "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "actor_id"
   end
+
+  add_index "notifications", ["user_id", "created_at"], name: "index_notifications_on_user_id_and_created_at", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.string   "reason"
     t.boolean  "open"
     t.string   "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.integer  "admin_id"
+    t.integer  "reportable_id"
+    t.string   "reportable_type"
   end
 
   create_table "tags", force: :cascade do |t|

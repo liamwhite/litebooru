@@ -3,8 +3,6 @@ module Sluggable
   extend ActiveSupport::Concern
 
   included do
-    field :slug, type: String
-    index slug: 1
     validates :slug, uniqueness: true, presence: true
 
     before_validation do
