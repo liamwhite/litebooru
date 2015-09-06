@@ -5,6 +5,14 @@ class Image < ActiveRecord::Base
   include Notifyable
   include Reportable
 
+  has_attached_file :image, presence: true, styles: {thumb_tiny: '50x50>', thumb_small: '150x150>', thumb: '250x250>', small: '320x240>', medium: '800x600>', large: '1280x1024>', tall: '1024x4096>'}
+
+  # Validations
+  validates_attachment :image, content_type: {content_type: %w|image/png image/jpeg image/gif|}, size: {in: 0..25000.kilobytes}, presence: true
+  validates_uniqueness_of :id_number
+
+  ALLOWED_PARAMETERS = [:description, :image, :source_url, :tag_list]
+
   # Relations
   has_many :comments, validate: false
   belongs_to :user, inverse_of: :images
