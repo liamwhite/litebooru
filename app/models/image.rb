@@ -83,7 +83,7 @@ class Image < ActiveRecord::Base
 
   def as_indexed_json(options = {})
     d = self.as_json(options)
-    d[:ip] = self.ip
+    d[:ip] = self.ip.to_s
     d[:uploader_id] = self.user_id.to_s
     return d
   end

@@ -33,7 +33,7 @@ class Tag < ActiveRecord::Base
   end
 
   def set_image_count
-    self.image_count = Image.where(tag_ids: [self.id], hidden_from_users: false).count
+    self.image_count = Image.where('? = ANY (tag_ids)', self.id).where(hidden_from_users: false).count
   end
 
   def to_param

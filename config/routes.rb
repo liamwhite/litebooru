@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   resources :tags, only: [:index, :show]
   resources :images do
-    get 'tags_source'
     get 'comments'
     put 'update_metadata'
     resources :comments

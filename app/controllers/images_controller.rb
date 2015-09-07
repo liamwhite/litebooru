@@ -9,21 +9,14 @@ class ImagesController < ApplicationController
   def show
     @image = Image.find_by(id_number: params[:id])
     render_404_if_not(@image) do
-      @comments = @image.comments.desc(:created_at).limit(25)
+      @comments = @image.comments.order(created_at: :desc).limit(25)
       render
     end
   end
 
   def comments
     @image = Image.find_by(id_number: params[:id])
-    @comments = @image.comments.desc(:created_at).limit(25)
-  end
-
-  def tags
-    @image = Image.find_by(id_number: params[:image_id])
-    render_404_if_not(@image) do
-      render partial: 'tags/tag_list', layout: false, locals: {tags: @image.tags.desc(:system).asc(:name)}
-    end
+    @comments = @image.comments.order(created_at: :desc).limit(25)
   end
 
   def update_metadata
@@ -43,8 +36,8 @@ class ImagesController < ApplicationController
     @image.ip = request.remote_ip
     @image.user_agent = request.env['HTTP_USER_AGENT']
     @image.user = current_user
-    if @image.assign_attributes(params.require(:image).permit(Image::ALLOWED_PARAMETERS))
-      @image.save!
+    @image.assign_attributes(params.require(:image).permit(Image::ALLOWED_PARAMETERS))
+    if @image.save
       redirect_to image_path(@image)
     else
       render action: 'new'

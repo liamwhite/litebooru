@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906225747) do
+ActiveRecord::Schema.define(version: 20150907001947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,20 +39,20 @@ ActiveRecord::Schema.define(version: 20150906225747) do
     t.integer  "id_number",          default: 0
     t.string   "hide_reason"
     t.integer  "comment_count"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "user_id"
     t.integer  "hidden_by_user_id"
     t.inet     "ip"
     t.string   "user_agent"
     t.boolean  "anonymous"
-    t.integer  "watcher_ids",        default: [], null: false, array: true
-    t.integer  "tag_ids",            default: [], null: false, array: true
-    t.boolean  "hidden_from_users",               null: false
+    t.integer  "watcher_ids",        default: [],    null: false, array: true
+    t.integer  "tag_ids",            default: [],    null: false, array: true
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "hidden_from_users",  default: false, null: false
   end
 
   add_index "images", ["hidden_from_users"], name: "index_images_on_hidden_from_users", using: :btree
