@@ -9,6 +9,8 @@ class Comment < ActiveRecord::Base
   belongs_to :image, validate: false
   belongs_to :deleted_by, class_name: "User"
 
+  ALLOWED_PARAMETERS = [:body, :anonymous]
+
   # Callbacks
   after_create do |c|
     c.image.increment!(:comment_count)
