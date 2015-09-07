@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907001947) do
+ActiveRecord::Schema.define(version: 20150907132140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20150907001947) do
   create_table "images", force: :cascade do |t|
     t.string   "source_url"
     t.string   "description"
-    t.integer  "id_number",          default: 0
     t.string   "hide_reason"
     t.integer  "comment_count"
     t.datetime "created_at",                         null: false
@@ -53,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150907001947) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "hidden_from_users",  default: false, null: false
+    t.integer  "id_number",                          null: false
   end
 
   add_index "images", ["hidden_from_users"], name: "index_images_on_hidden_from_users", using: :btree

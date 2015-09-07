@@ -9,7 +9,7 @@ class Image < ActiveRecord::Base
 
   # Validations
   validates_attachment :image, content_type: {content_type: %w|image/png image/jpeg image/gif|}, size: {in: 0..25000.kilobytes}, presence: true
-  validates_uniqueness_of :id_number
+  validates :id_number, uniqueness: true, presence: true
 
   ALLOWED_PARAMETERS = [:description, :image, :source_url, :tag_list]
 
@@ -19,12 +19,14 @@ class Image < ActiveRecord::Base
   belongs_to :hidden_by_user, class_name: 'User', inverse_of: :hidden_images
 
   # Callbacks
-  before_create do
-    last_image = Image.order(id_number: :desc).select(:id_number).first
-    if last_image and last_image.id_number and last_image.id_number >= 0
-      self.id_number = last_image.id_number+1
-    else
-      self.id_number = 0
+  before_validation do
+    if not self.persisted?
+      last_image = Image.order(id_number: :desc).select(:id_number).first
+      if last_image and last_image.id_number and last_image.id_number >= 0
+        self.id_number = last_image.id_number+1
+      else
+        self.id_number = 0
+      end
     end
   end
 
