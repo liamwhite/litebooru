@@ -9,6 +9,9 @@ class Tag < ActiveRecord::Base
   validates_presence_of :name
   validates :name, length: {maximum: 75}
 
+  # Callbacks
+  before_validation :set_namespaced_names
+
   # Elasticsearch
   def as_json(options = {})
     d = {
@@ -34,6 +37,14 @@ class Tag < ActiveRecord::Base
 
   def set_image_count
     self.image_count = Image.where('? = ANY (tag_ids)', self.id).where(hidden_from_users: false).count
+  end
+
+  def set_namespaced_names(force=false)
+    if self.name_in_namespace and not force
+      return self.name_in_namespace
+    end
+    self.namespace = name.split(":").size > 1 ? name.split(":")[0] : nil
+    self.name_in_namespace = name.split(":").size > 1 ? name.split(":")[1..-1].join(":") : name
   end
 
   def to_param
