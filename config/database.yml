@@ -1,3 +1,12 @@
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: litebooru
+  host: localhost
+  pool: 5
+  username: litebooru
+  password: <% ENV['DB_PASSWORD'] %>
+
 development:
   adapter: postgresql
   encoding: unicode
@@ -6,3 +15,11 @@ development:
   pool: 5
   username: litebooru
   password: password
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: litebooru_test
+  host: localhost
+  pool: 5
+  username: litebooru

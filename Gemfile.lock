@@ -197,6 +197,7 @@ DEPENDENCIES
   paperclip
   pg
   rails (= 4.2.4)
+  rake
   redcarpet
   sass-rails (~> 5.0)
   slim

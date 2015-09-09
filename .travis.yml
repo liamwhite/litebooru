@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - "2.2.3"
+addons:
+  postgresql: "9.4"
+services:
+  - elasticsearch
+before_script:
+  - psql -c 'create database litebooru_test;' -U postgres
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:schema:load db:test:prepare db:seed test
