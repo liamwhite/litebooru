@@ -26,7 +26,7 @@ class Tag < ActiveRecord::Base
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false', _source: {enabled: false}, _all: {enabled: false} do
-      indexes :id, type: 'string', index: 'not_analyzed'
+      indexes :id, type: 'integer', index: 'not_analyzed'
       indexes :name, type: 'string', index: 'not_analyzed'
       indexes :image_count, type: 'integer', index: 'not_analyzed'
       indexes :description, type: 'string', analyzer: 'snowball'

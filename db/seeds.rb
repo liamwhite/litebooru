@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-[Tag, Image].each{|m| m.__elasticsearch__.create_index!}
+[Tag, Image, Comment, Filter].each{|m| m.__elasticsearch__.create_index!}
 
 tags_to_make = [{name: 'safe', system: true}, {name: 'questionable', system: true}, {name: 'explicit', system: true}]
 for t_data in tags_to_make

@@ -43,14 +43,14 @@ class Comment < ActiveRecord::Base
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false', _all: {enabled: false}, _source: {enabled: false} do
-      indexes :id, type: 'string', index: 'not_analyzed'
-      indexes :image_id, type: 'string', index: 'not_analyzed'
+      indexes :id, type: 'integer', index: 'not_analyzed'
+      indexes :image_id, type: 'integer', index: 'not_analyzed'
       indexes :body, type: 'string', analyzer: 'snowball'
       indexes :author, type: 'string', index: 'not_analyzed'
       indexes :created_at, type: 'date'
       indexes :updated_at, type: 'date'
       indexes :hidden_from_users, type: 'boolean', index: 'not_analyzed'
-      indexes :user_id, type: 'string', index: 'not_analyzed'
+      indexes :user_id, type: 'integer', index: 'not_analyzed'
       indexes :ip, type: 'string', index: 'not_analyzed'
     end
   end

@@ -92,7 +92,7 @@ class Image < ActiveRecord::Base
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false', _all: {enabled: false} do
-      indexes :id, type: 'string', index: 'not_analyzed'
+      indexes :id, type: 'integer', index: 'not_analyzed'
       indexes :id_number, type: 'integer', index: 'not_analyzed'
       indexes :hidden_from_users, type: 'boolean', index: 'not_analyzed'
       indexes :created_at, type: 'date'
@@ -103,7 +103,7 @@ class Image < ActiveRecord::Base
       indexes :tag_ids, type: 'string', index: 'not_analyzed'
       indexes :tag_names, type: 'string', index: 'not_analyzed'
       indexes :uploader, type: 'string', index: 'not_analyzed'
-      indexes :uploader_id, type: 'string', index: 'not_analyzed'
+      indexes :uploader_id, type: 'integer', index: 'not_analyzed'
     end
   end
 
