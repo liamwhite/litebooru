@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :filters
   resources :notifications
   devise_for :users
   resources :profiles, only: [:show]

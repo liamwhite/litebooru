@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907132140) do
+ActiveRecord::Schema.define(version: 20150909185953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,21 @@ ActiveRecord::Schema.define(version: 20150907132140) do
 
   add_index "comments", ["created_at"], name: "index_comments_on_created_at", using: :btree
   add_index "comments", ["image_id", "created_at"], name: "index_comments_on_image_id_and_created_at", using: :btree
+
+  create_table "filters", force: :cascade do |t|
+    t.string   "name",              default: "",    null: false
+    t.string   "description",       default: ""
+    t.boolean  "system",            default: false, null: false
+    t.boolean  "public",            default: false, null: false
+    t.integer  "hidden_tag_ids",    default: [],    null: false, array: true
+    t.integer  "spoilered_tag_ids", default: [],    null: false, array: true
+    t.string   "hidden_complex",    default: ""
+    t.string   "spoilered_complex", default: ""
+    t.integer  "user_count",        default: 0,     null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "user_id"
+  end
 
   create_table "images", force: :cascade do |t|
     t.string   "source_url"
@@ -121,6 +136,7 @@ ActiveRecord::Schema.define(version: 20150907132140) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "current_filter_id"
   end
 
   add_index "users", ["downcase_name"], name: "index_users_on_downcase_name", using: :btree

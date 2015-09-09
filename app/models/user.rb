@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :hidden_images, class_name: 'Image'
   has_many :reports_made, inverse_of: :user, class_name: 'Report'
   has_many :managed_reports, inverse_of: :admin, class_name: 'Report'
+  belongs_to :current_filter, class_name: 'Filter', inverse_of: :current_users, validate: false
 
   has_attached_file :avatar, styles: {small: '20x20>', medium: '50x50>', large: '100x100>', huge: '200x200>'}, default_url: 'avatar-missing.svg'
 
