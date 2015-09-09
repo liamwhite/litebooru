@@ -1,4 +1,4 @@
-# litebooru
+# litebooru [![Build Status](https://travis-ci.org/liamwhite/litebooru.svg?branch=master)](https://travis-ci.org/liamwhite/litebooru)
 open booru-on-rails clone
 
 ## Setup
