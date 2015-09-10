@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   resources :filters
   resources :notifications
-  devise_for :users
   resources :profiles, only: [:show]
+  resources :reports, only: [:index, :new, :create]
+
   get 'search/index'
 
   resources :tags, only: [:index, :show]
@@ -18,7 +20,8 @@ Rails.application.routes.draw do
     get 'notifications'
   end
 
-  root to: 'pages#activity'
+  get '/comments', action: :index, controller: :comments
 
+  root to: 'pages#activity'
   get '*path', controller: 'pages', action: 'render_404'
 end

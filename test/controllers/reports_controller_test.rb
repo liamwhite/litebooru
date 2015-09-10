@@ -23,27 +23,4 @@ class ReportsControllerTest < ActionController::TestCase
 
     assert_redirected_to report_path(assigns(:report))
   end
-
-  test "should show report" do
-    get :show, id: @report
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @report
-    assert_response :success
-  end
-
-  test "should update report" do
-    patch :update, id: @report, report: { open: @report.open, reason: @report.reason, state: @report.state }
-    assert_redirected_to report_path(assigns(:report))
-  end
-
-  test "should destroy report" do
-    assert_difference('Report.count', -1) do
-      delete :destroy, id: @report
-    end
-
-    assert_redirected_to reports_path
-  end
 end

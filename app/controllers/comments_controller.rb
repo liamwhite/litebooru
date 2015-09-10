@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  def index
+  end
+
   def show
     @comment = Comment.find(params[:id])
     render_404_if_not(@comment) do
@@ -33,5 +36,14 @@ class CommentsController < ApplicationController
         render partial: 'comments/image_comments', layout: false, locals: {comments: @image.comments.desc(:created_at).limit(25)}
       end
     end
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 end

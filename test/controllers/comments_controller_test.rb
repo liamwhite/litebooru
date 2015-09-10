@@ -2,6 +2,7 @@ require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
   setup do
+    @image = images(:zero)
     @comment = comments(:one)
   end
 

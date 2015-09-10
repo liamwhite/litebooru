@@ -1,21 +1,20 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+safe:
+  description: 'Material nobody could reasonably find offensive.'
+  image_count: 0
+  name: 'safe'
+  namespace: null
+  name_in_namespace: 'safe'
+  short_description: 'Entirely safe for work and children.'
+  system: true
+  slug: 'safe'
 
-one:
-  description: MyString
-  image_count: 1
-  name: MyString
-  namespace: MyString
-  name_in_namespace: MyString
-  short_descripion: MyString
-  system: false
-  slug: MyString
+suggestive:
+  description: 'Suggestive things include revealing outfits on humans and humanised characters, sexy poses, bedroom eyes, and other things.'
+  image_count: 0
+  name: 'suggestive'
+  namespace: null
+  name_in_namespace: 'suggestive'
+  short_description: '"Sexy" stuff that is still relatively tame'
+  system: true
+  slug: 'suggestive'
 
-two:
-  description: MyString
-  image_count: 1
-  name: MyString
-  namespace: MyString
-  name_in_namespace: MyString
-  short_descripion: MyString
-  system: false
-  slug: MyString
