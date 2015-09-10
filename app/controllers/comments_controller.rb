@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   def index
+    @comments = Comment.fancy_search.records
   end
 
   def show
@@ -38,12 +39,9 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to image_path(params[:image_id])
   end
 end

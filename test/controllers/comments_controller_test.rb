@@ -3,7 +3,7 @@ require 'test_helper'
 class CommentsControllerTest < ActionController::TestCase
   setup do
     @image = images(:zero)
-    @comment = comments(:one)
+    @comment = Comment.create!(anonymous: false, body: 'foo', image: @image)
   end
 
   test "should get index" do
@@ -12,39 +12,24 @@ class CommentsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:comments)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   test "should create comment" do
     assert_difference('Comment.count') do
-      post :create, comment: { body: @comment.body, deleted_at: @comment.deleted_at, hidden_from_users: @comment.hidden_from_users }
+      post :create, comment: { body: @comment.body }, image_id: @image
     end
 
-    assert_redirected_to comment_path(assigns(:comment))
+    assert_redirected_to image_path(@image)
   end
 
   test "should show comment" do
-    get :show, id: @comment
+    get :show, id: @comment, image_id: @image
     assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @comment
-    assert_response :success
-  end
-
-  test "should update comment" do
-    patch :update, id: @comment, comment: { body: @comment.body, deleted_at: @comment.deleted_at, hidden_from_users: @comment.hidden_from_users }
-    assert_redirected_to comment_path(assigns(:comment))
   end
 
   test "should destroy comment" do
     assert_difference('Comment.count', -1) do
-      delete :destroy, id: @comment
+      delete :destroy, id: @comment, image_id: @image
     end
 
-    assert_redirected_to comments_path
+    assert_redirected_to image_path(@image)
   end
 end
