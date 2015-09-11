@@ -1,0 +1,7 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: litebooru_test
+  host: localhost
+  pool: 5
+  username: postgres

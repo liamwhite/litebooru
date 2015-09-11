@@ -7,5 +7,6 @@ services:
   - elasticsearch
 before_script:
   - psql -c 'create database litebooru_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
 script:
   - RAILS_ENV=test bundle exec rake db:schema:load db:test:prepare db:seed test
