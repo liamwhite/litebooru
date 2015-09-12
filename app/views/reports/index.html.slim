@@ -1,0 +1,10 @@
+h2 My Reports
+- if @reports
+  table
+    - for report in @reports
+      tr
+        td Placeholder
+        td= @report.reason
+        td= @report.state.humanize.capitalize
+- else
+  | You must be logged in to see your reports.

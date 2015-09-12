@@ -8,8 +8,7 @@
 }
 
 #image-tags, #image-comments, #comment-form, #update-metadata, #image-actions {
-  margin-left: auto;
-  margin-right: auto;
+  @extend %auto-margin;
 }
 
 #image-tags {

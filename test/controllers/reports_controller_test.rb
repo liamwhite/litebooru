@@ -8,6 +8,14 @@ class ReportsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
+  end
+
+  test "should index reports when logged in" do
+    @user = users(:administrator)
+    sign_in @user
+
+    get :index
+    assert_response :success
     assert_not_nil assigns(:reports)
   end
 
@@ -18,9 +26,9 @@ class ReportsControllerTest < ActionController::TestCase
 
   test "should create report" do
     assert_difference('Report.count') do
-      post :create, report: { open: @report.open, reason: @report.reason, state: @report.state }
+      post :create, report: { reason: @report.reason }
     end
 
-    assert_redirected_to report_path(assigns(:report))
+    assert_redirected_to reports_path
   end
 end

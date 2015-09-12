@@ -1,0 +1,7 @@
+h2 Submit a report
+= form_for(@report) do |f|
+  = hidden_field_tag :reportable_id, params[:reportable_id]
+  = hidden_field_tag :reportable_type, params[:reportable_type]
+  .fieldlabel Say anything we should know here.
+  .field= f.text_area :reason, placeholder: "Report reason"
+  .actions= f.submit "Submit Report", data:{disable_with: 'Submitting…'}

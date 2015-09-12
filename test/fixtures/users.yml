@@ -2,3 +2,4 @@ administrator:
   name: 'Administrator'
   downcase_name: 'administrator'
   email: 'user@example.com'
+  slug: 'administrator'
