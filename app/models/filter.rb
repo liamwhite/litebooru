@@ -1,10 +1,14 @@
 class Filter < ActiveRecord::Base
   include FancySearchable
   include Indexable
+  include QueryValidatable
 
   # Relations
   belongs_to :user, inverse_of: :filters
   has_many :current_users, inverse_of: :current_filter
+
+  validates_query_string :hidden_complex
+  validates_query_string :spoilered_complex
 
   def as_json(options = {})
     d = {

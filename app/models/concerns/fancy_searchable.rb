@@ -100,5 +100,9 @@ module FancySearchable
         end
       end
     end
+
+    def get_search_parser
+      proc {|query, options={}| SearchParser.new(query, self.default_field, self.allowed_fields(options)) }
+    end
   end
 end
