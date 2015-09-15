@@ -33,9 +33,7 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new
-    @image.ip = request.remote_ip
-    @image.user_agent = request.env['HTTP_USER_AGENT']
-    @image.user = current_user
+    @image.capture!(current_user, request)
     @image.assign_attributes(params.require(:image).permit(Image::ALLOWED_PARAMETERS))
     if @image.save
       redirect_to image_path(@image)

@@ -17,11 +17,8 @@ class CommentsController < ApplicationController
   def create
     @image = Image.find_by(id_number: params[:image_id])
     render_404_if_not(@image) do
-      @comment = Comment.new
-      @comment.ip = request.remote_ip
-      @comment.image = @image
-      @comment.user = current_user
-      @comment.user_agent = request.env['HTTP_USER_AGENT']
+      @comment = @image.comments.new
+      @comment.capture!(current_user, request)
       @comment.assign_attributes(params.require(:comment).permit(Comment::ALLOWED_PARAMETERS))
       if @comment.save
         @comment.update_index
