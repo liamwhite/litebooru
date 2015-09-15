@@ -32,9 +32,8 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @image = Image.new
+    @image = Image.new(params.require(:image).permit(Image::ALLOWED_PARAMETERS))
     @image.capture!(current_user, request)
-    @image.assign_attributes(params.require(:image).permit(Image::ALLOWED_PARAMETERS))
     if @image.save
       redirect_to image_path(@image)
     else

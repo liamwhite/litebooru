@@ -10,9 +10,8 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.new
+    @report = Report.new(params.require(:report).permit(Report::ALLOWED_PARAMETERS))
     @report.capture!(current_user, request)
-    @report.assign_attributes(params.require(:report).permit(Report::ALLOWED_PARAMETERS))
     if @report.save
       redirect_to reports_path
     else

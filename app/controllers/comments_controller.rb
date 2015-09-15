@@ -17,9 +17,8 @@ class CommentsController < ApplicationController
   def create
     @image = Image.find_by(id_number: params[:image_id])
     render_404_if_not(@image) do
-      @comment = @image.comments.new
+      @comment = @image.comments.new(comment_params)
       @comment.capture!(current_user, request)
-      @comment.assign_attributes(params.require(:comment).permit(Comment::ALLOWED_PARAMETERS))
       if @comment.save
         @comment.update_index
 
@@ -38,4 +37,11 @@ class CommentsController < ApplicationController
     @comment.destroy
     redirect_to image_path(params[:image_id])
   end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(Comment::ALLOWED_PARAMETERS)
+  end
+
 end
