@@ -6,12 +6,6 @@ class CommentsControllerTest < ActionController::TestCase
     @comment = Comment.create!(anonymous: false, body: 'foo', image: @image)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:comments)
-  end
-
   test "should create comment" do
     assert_difference('Comment.count') do
       post :create, comment: { body: @comment.body }, image_id: @image

@@ -1,0 +1,4 @@
+= form_for(@filter) do |f|
+  .field= f.text_field :name
+  .field= f.text_field :description
+  .actions = f.submit 'Save'

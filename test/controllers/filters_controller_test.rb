@@ -40,6 +40,7 @@ class FiltersControllerTest < ActionController::TestCase
   end
 
   test "should destroy filter" do
+    @filter.update_index
     assert_difference('Filter.count', -1) do
       delete :destroy, id: @filter
     end

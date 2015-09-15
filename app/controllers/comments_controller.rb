@@ -1,8 +1,4 @@
 class CommentsController < ApplicationController
-  def index
-    @comments = Comment.fancy_search.records
-  end
-
   def show
     @comment = Comment.find(params[:id])
     render_404_if_not(@comment) do

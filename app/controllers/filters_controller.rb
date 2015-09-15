@@ -22,7 +22,6 @@ class FiltersController < ApplicationController
   # POST /filters
   def create
     @filter = Filter.new(filter_params)
-
     if @filter.save
       redirect_to @filter, notice: 'Filter was successfully created.'
     else
