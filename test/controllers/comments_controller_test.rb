@@ -11,7 +11,7 @@ class CommentsControllerTest < ActionController::TestCase
       post :create, comment: { body: @comment.body }, image_id: @image
     end
 
-    assert_redirected_to image_path(@image)
+    assert_response :success
   end
 
   test "should show comment" do

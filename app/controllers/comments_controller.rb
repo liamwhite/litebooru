@@ -22,15 +22,16 @@ class CommentsController < ApplicationController
       @comment.image = @image
       @comment.user = current_user
       @comment.user_agent = request.env['HTTP_USER_AGENT']
-      if @comment.assign_attributes(params.require(:comment).permit(Comment::ALLOWED_PARAMETERS))
-        # Save and index comment
-        @comment.save!
+      @comment.assign_attributes(params.require(:comment).permit(Comment::ALLOWED_PARAMETERS))
+      if @comment.save
         @comment.update_index
 
         # Notify watchers and subscribe poster
         @image.subscribe!(@comment.user)
         @image.notify(@comment.author, 'commented on', [@comment.author])
-        render partial: 'comments/image_comments', layout: false, locals: {comments: @image.comments.desc(:created_at).limit(25)}
+        render partial: 'comments/image_comments', layout: false, locals: {comments: @image.comments.order(created_at: :desc).limit(25)}
+      else
+        redirect_to image_path(@image)
       end
     end
   end
