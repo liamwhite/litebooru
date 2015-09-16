@@ -5,6 +5,8 @@ class Filter < ActiveRecord::Base
 
   # Relations
   belongs_to :user, inverse_of: :filters
+  has_array_field :hidden_tags, Tag
+  has_array_field :spoilered_tags, Tag
   has_many :current_users, inverse_of: :current_filter
 
   validates_query_string :hidden_complex

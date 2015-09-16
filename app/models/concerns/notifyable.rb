@@ -1,6 +1,10 @@
 module Notifyable
   extend ActiveSupport::Concern
 
+  included do
+    has_array_field :watchers, User
+  end
+
   def notify(user, action, users_to_exclude=[])
     return if watcher_ids.count == 0
 

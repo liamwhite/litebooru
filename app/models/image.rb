@@ -14,6 +14,7 @@ class Image < ActiveRecord::Base
   ALLOWED_PARAMETERS = [:description, :image, :source_url, :tag_list]
 
   # Relations
+  has_array_field :tags
   has_many :comments, validate: false
   belongs_to :user, inverse_of: :images
   belongs_to :hidden_by_user, class_name: 'User', inverse_of: :hidden_images
