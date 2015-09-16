@@ -118,4 +118,25 @@ class Image < ActiveRecord::Base
   def self.allowed_fields(options = {})
     [:id, :id_number, :description, :source_url, :tag_names, :uploader]
   end
+
+  def self.fancy_search(options = {}, &block)
+    super(options) do |s|
+      yield s if block
+
+      # Filter hidden tags
+      if not options[:hidden_tag_ids].blank?
+        s.add_filter(not: {terms: {tag_ids: options[:hidden_tag_ids], _cache: true}})
+      end
+
+      # Hidden complex
+      if not options[:hidden_complex].blank?
+        parser = Image.get_search_parser.call(options[:hidden_complex], options)
+        if parser.requires_query
+          s.add_filter(fquery: {query: {bool: {must_not: parser.parsed}, _cache: true}})
+        else
+          s.add_filter(not: parser.parsed.merge(_cache: true))
+        end
+      end
+    end
+  end
 end

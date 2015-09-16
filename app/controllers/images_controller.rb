@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def index
-    @images_search = Image.fancy_search(size: 25) do |search|
+    @images_search = Image.fancy_search(default_image_filter_options.merge(size: 25)) do |search|
       search.add_sort :created_at, :desc
     end
     @images = @images_search.records

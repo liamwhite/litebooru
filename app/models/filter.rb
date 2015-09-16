@@ -39,4 +39,10 @@ class Filter < ActiveRecord::Base
       indexes :user_id, type: 'integer', index: 'not_analyzed'
     end
   end
+
+  def self.default_filter
+    return @@default_filter if defined?(@@default_filter)
+    @@default_filter = Filter.find_by(name: 'Default', system: true, public: true)
+    @@default_filter = Filter.create(name: 'Default', system: true, public: true) if not @@default_filter
+  end
 end

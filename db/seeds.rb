@@ -20,6 +20,12 @@ end
 puts "Basic tags created"
 
 begin
+  filter = Filter.create!(name: 'Default', system: true, public: true)
+rescue
+  puts "Couldn't create default filter"
+end
+
+begin
   user = User.new(name: 'Administrator', email: 'user@example.com', password: 'prettyplease', password_confirmation: 'prettyplease')
   user.downcase_name = 'administrator'
   user.save!
