@@ -1,4 +1,4 @@
-# litebooru [![Build Status](https://travis-ci.org/liamwhite/litebooru.svg?branch=master)](https://travis-ci.org/liamwhite/litebooru) [![Code Climate](https://codeclimate.com/github/liamwhite/litebooru/badges/gpa.svg)](https://codeclimate.com/github/liamwhite/litebooru) [![Test Coverage](https://codeclimate.com/github/liamwhite/litebooru/badges/coverage.svg)](https://codeclimate.com/github/liamwhite/litebooru/coverage)
+# litebooru [![Build Status](https://travis-ci.org/liamwhite/litebooru.svg?branch=master)](https://travis-ci.org/liamwhite/litebooru) [![Code Climate](https://codeclimate.com/github/liamwhite/litebooru/badges/gpa.svg)](https://codeclimate.com/github/liamwhite/litebooru) [![Test Coverage](https://codeclimate.com/github/liamwhite/litebooru/badges/coverage.svg)](https://codeclimate.com/github/liamwhite/litebooru/coverage) [![Dependency Status](https://gemnasium.com/liamwhite/litebooru.svg)](https://gemnasium.com/liamwhite/litebooru)
 open booru-on-rails clone
 
 ## Setup
