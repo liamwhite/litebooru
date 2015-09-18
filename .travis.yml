@@ -3,6 +3,8 @@ rvm:
   - "2.2.3"
 addons:
   postgresql: "9.4"
+  code_climate:
+    repo_token: 72101ad377aa0cba0b9e02986b6a3e7ddee416ce336c31de9bc2502705c46c8e
 services:
   - elasticsearch
 before_script:

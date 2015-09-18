@@ -22,4 +22,5 @@ group :development, :test do
   gem 'rake'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'codeclimate-test-reporter', require: nil
 end
