@@ -27,6 +27,17 @@
   }
 }
 
+#subheader {
+  background-color: #eee;
+  font-size: 12pt;
+  a {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #000;
+    &.active { background-color: #ccc; }
+  }
+}
+
 #footer {
   @extend %centered;
 }

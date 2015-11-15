@@ -18,4 +18,17 @@ module ApplicationHelper
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_intra_emphasis: true, tables: true, fenced_code_blocks: true, autolink: true, strikethrough: true, superscript: true, underline: true)
     markdown.render(text).html_safe
   end
+
+  def images_subheader_class
+    'active' if params[:controller] == 'images'
+  end
+
+  def activity_subheader_class
+    'active' if params[:controller] == 'pages'
+  end
+
+  def tags_subheader_class
+    puts params[:controller]
+    'active' if params[:controller] == 'tags'
+  end
 end

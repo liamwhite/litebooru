@@ -17,16 +17,18 @@ html
           | by
           br
           b= link_to_author(@image)
-        #image-previews
+        #image-size
           - size_kb = @image.image.size/1024
           - size_mb = (size_kb/1024.0).round(2)
           strong=> "#{@image.dimensions}"
           = File.extname(@image.image.path).upcase
           br
           - if size_kb <= 1024
-            => "#{size_kb} kB "
+            = "#{size_kb} kB "
           - else
             span title="#{size_kb} kB" ="#{size_mb} MB "
+        #image-previews
+          
       #content.content-right
         = yield
     #footer
