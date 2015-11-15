@@ -31,6 +31,8 @@ class Image < ActiveRecord::Base
     end
   end
 
+  before_save :extract_dimensions
+
   def to_param
     id_number.to_s
   end
@@ -65,6 +67,15 @@ class Image < ActiveRecord::Base
 
   def tags
     Tag.where(id: self.tag_ids)
+  end
+
+  # Callback to retreieve dimension metadata about a file.
+  def extract_dimensions
+    tempfile = image.queued_for_write[:original]
+    unless tempfile.nil?
+      geometry = Paperclip::Geometry.from_file(tempfile)
+      self.dimensions = [geometry.width.to_i, geometry.height.to_i].join('x')
+    end
   end
 
   # Elasticsearch

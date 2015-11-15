@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title
+      | #{@image.id_number} - Litebooru
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    = stylesheet_link_tag    'themes/default', media: 'all', 'data-turbolinks-track'=>true
+    = javascript_include_tag 'application', 'data-turbolinks-track'=>true
+    = csrf_meta_tags
+  body
+    include _header.html.slim
+    #container
+      #sidebar
+        #image-uploader
+          | Uploaded
+          =<> friendly_time(@image.created_at)
+          | by
+          br
+          b= link_to_author(@image)
+        #image-previews
+          - size_kb = @image.image.size/1024
+          - size_mb = (size_kb/1024.0).round(2)
+          strong=> "#{@image.dimensions}"
+          = File.extname(@image.image.path).upcase
+          br
+          - if size_kb <= 1024
+            => "#{size_kb} kB "
+          - else
+            span title="#{size_kb} kB" ="#{size_mb} MB "
+      #content.content-right
+        = yield
+    #footer
+      small
+        | Served by
+        =<> Socket.gethostname
+        =<> render_time

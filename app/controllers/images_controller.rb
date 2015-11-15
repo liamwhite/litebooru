@@ -10,7 +10,7 @@ class ImagesController < ApplicationController
     @image = Image.find_by(id_number: params[:id])
     render_404_if_not(@image) do
       @comments = @image.comments.order(created_at: :desc).limit(25)
-      render
+      render layout: 'image'
     end
   end
 

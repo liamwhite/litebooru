@@ -1,6 +1,5 @@
 #header {
-  background-color: #e6e6e6;
-  border-bottom: 1px solid #ddd;
+  background-color: #cce7fb;
   padding: 0;
   display: table;
   width: 100%;
@@ -24,9 +23,26 @@
   }
   form input {
     margin: 0;
+    background: #fff;
   }
 }
 
 #footer {
   @extend %centered;
+}
+
+#sidebar {
+  display: inline-block;
+  width: 300px;
+  background-color: #eff6fb;
+  padding: 10px;
+  box-sizing: border-box;
+  vertical-align: top;
+  div:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+
+.content-right {
+  display: inline-block;
 }
