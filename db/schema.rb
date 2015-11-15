@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115174508) do
+ActiveRecord::Schema.define(version: 20151115183731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,11 @@ ActiveRecord::Schema.define(version: 20151115174508) do
     t.boolean  "hidden_from_users",  default: false, null: false
     t.integer  "id_number",                          null: false
     t.string   "dimensions"
+    t.integer  "score",              default: 0
+    t.integer  "favourites",         default: 0
+    t.integer  "up_vote_count",      default: 0
+    t.integer  "down_vote_count",    default: 0
+    t.integer  "vote_count",         default: 0
   end
 
   add_index "images", ["hidden_from_users"], name: "index_images_on_hidden_from_users", using: :btree
@@ -115,6 +120,16 @@ ActiveRecord::Schema.define(version: 20151115174508) do
   add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
   add_index "tags", ["slug"], name: "index_tags_on_slug", using: :btree
   add_index "tags", ["system"], name: "index_tags_on_system", using: :btree
+
+  create_table "user_interactions", force: :cascade do |t|
+    t.string  "interaction_type", null: false
+    t.string  "value"
+    t.integer "user_id"
+    t.integer "image_id"
+  end
+
+  add_index "user_interactions", ["image_id", "user_id"], name: "index_user_interactions_on_image_id_and_user_id", using: :btree
+  add_index "user_interactions", ["user_id"], name: "index_user_interactions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                                 null: false

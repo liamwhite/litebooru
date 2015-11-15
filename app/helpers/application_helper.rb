@@ -28,7 +28,6 @@ module ApplicationHelper
   end
 
   def tags_subheader_class
-    puts params[:controller]
     'active' if params[:controller] == 'tags'
   end
 end

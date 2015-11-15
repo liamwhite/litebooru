@@ -2,6 +2,7 @@ class Image < ActiveRecord::Base
   include AnonymizableUserAttributable
   include FancySearchable
   include Indexable
+  include Interactable
   include Notifyable
   include Reportable
 
