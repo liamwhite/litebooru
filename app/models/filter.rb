@@ -43,8 +43,6 @@ class Filter < ActiveRecord::Base
   end
 
   def self.default_filter
-    return @@default_filter if defined?(@@default_filter)
-    @@default_filter = Filter.find_by(name: 'Default', system: true, public: true)
-    @@default_filter = Filter.create(name: 'Default', system: true, public: true) if not @@default_filter
+    @@default_filter ||= Filter.find_or_initialize_by(name: 'Default', system: true, public: true)
   end
 end
