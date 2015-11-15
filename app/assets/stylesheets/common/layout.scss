@@ -42,18 +42,26 @@
   @extend %centered;
 }
 
+#container {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
 #sidebar {
-  display: inline-block;
+  display: table-cell;
   width: 300px;
   background-color: #eff6fb;
-  padding: 10px;
   box-sizing: border-box;
   vertical-align: top;
-  div:not(:last-child) {
-    margin-bottom: 5px;
+  div {
+    padding: 5px;
   }
 }
 
-.content-right {
-  display: inline-block;
+#content {
+  display: table-cell;
+  > div {
+    margin-top: 5px;
+  }
 }

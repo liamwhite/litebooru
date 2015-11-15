@@ -69,3 +69,37 @@
   width: 250px;
   height: 250px;
 }
+
+
+#interactions {
+  background-color: #519ed7;
+  color: #fff;
+  text-align: center;
+  > span a {
+    color: #fff;
+    font-weight: bold;
+    display: inline-block;
+    padding: 3px;
+    margin: 0 5px;
+    &:hover {
+      color: #519ed7;
+      background-color: #fff;
+      i.fa.fa-star { color: #c4b246; }
+      i.fa.fa-arrow-up { color: #67AF2B; }
+      i.fa.fa-arrow-down { color: #CF0001; }
+      i.fa.fa-comments { color: #9273D0; }
+    }
+    i.fa.fa-star {
+      color: #e2d9ae;
+    }
+    i.fa.fa-arrow-up {
+      color: #B3D795;
+    }
+    i.fa.fa-arrow-down {
+      color: #F1B3B3;
+    }
+    i.fa.fa-comments {
+      color: #DED5F1;
+    }
+  }
+}

@@ -11,6 +11,24 @@ html
     include _header.html.slim
     #container
       #sidebar
+        #interactions
+          span.fave-link
+            a> href="/"
+              => @image.favourites
+              i.fa.fa-star
+          span.upvote-link
+            a> href="/"
+              => @image.up_vote_count
+              i.fa.fa-arrow-up
+          strong=<> @image.score
+          span.downvote-link
+            a> href="/"
+              i.fa.fa-arrow-down>
+              = @image.down_vote_count
+          span.comments-link
+            a> href="#comments"
+              i.fa.fa-comments>
+              = @image.comments.count
         #image-uploader
           | Uploaded
           =<> friendly_time(@image.created_at)
