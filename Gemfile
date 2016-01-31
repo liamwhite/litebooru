@@ -20,7 +20,7 @@ gem 'redcarpet'
 group :development, :test do
   gem 'byebug'
   gem 'rake'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.0'
   gem 'spring'
   gem 'codeclimate-test-reporter', require: nil
 end
